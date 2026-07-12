@@ -10,7 +10,7 @@ Good candidates include:
 
 - a skill for a repeatable product, engineering, security, or review workflow;
 - durable Workspace Knowledge that applies across projects;
-- reusable Project Knowledge structure for one concrete application;
+- reusable general or product-specific Project Knowledge templates;
 - a practical guide for a common Lovable workflow or decision;
 - a checklist that catches meaningful mistakes before build or launch;
 - a worked example that teaches a reusable method;
@@ -58,7 +58,7 @@ Example branch names:
 ```text
 skill/webhook-reliability-review
 knowledge/workspace-security-rules
-knowledge/project-template
+knowledge/project-saas-template
 example/project-knowledge-saas
 fix/broken-link
 docs/clarify-security-policy
@@ -132,12 +132,16 @@ Use this structure:
 ```text
 project-knowledge/
 ├── README.md
-└── TEMPLATE.md
+├── TEMPLATE.md
+└── <ProductType>.md   # optional specific template, for example SaaS.md
 ```
 
 Rules:
 
-- `TEMPLATE.md` should cover stable product, domain, permission, tenant, data, integration, design, security, testing, and operational context.
+- `TEMPLATE.md` is the neutral starting point and should cover stable product, domain, permission, tenant, data, integration, design, security, testing, and operational context.
+- Product-specific templates such as `SaaS.md` should narrow or reorganize the general template around recurring needs of that product type.
+- Use concise PascalCase filenames for product-specific templates, such as `SaaS.md`, `Marketplace.md`, or `InternalTool.md`.
+- A specific template must remain reusable across multiple projects of that type and must not contain one company's private conventions.
 - Remove irrelevant sections rather than leaving unresolved placeholders in a finished configuration.
 - Do not include temporary task instructions, implementation prompts, active incident notes, or short-lived priorities.
 - Do not state speculative product rules, permissions, compliance guarantees, backup behavior, or security properties as facts.
@@ -193,7 +197,8 @@ Before opening a pull request, confirm:
 - [ ] Risks, limitations, and edge cases are covered.
 - [ ] Supporting references contain no hidden essential rules.
 - [ ] Workspace Knowledge contains no project-specific or temporary instructions.
-- [ ] Project Knowledge contains no temporary tasks, secrets, or unsupported claims.
+- [ ] Project Knowledge contains no temporary tasks, secrets, unsupported claims, or private conventions.
+- [ ] Product-specific Project Knowledge remains reusable beyond one private application.
 - [ ] Examples contain no secrets or private data.
 - [ ] The root catalog is updated only when necessary.
 - [ ] The contribution does not duplicate existing material without improvement.
