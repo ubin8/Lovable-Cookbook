@@ -12,6 +12,7 @@ Automatic use should not be treated as a quality badge. It is a routing decision
 | [`/rls-security-review`](../skills/rls-security-review/README.md) | **Off** | Starts a deep, read-only authorization audit. Automatic activation could turn normal Supabase or policy work into an unnecessarily broad review. |
 | [`/production-readiness`](../skills/production-readiness/README.md) | **Off** | Acts as a formal release gate and can return NO-GO or INSUFFICIENT EVIDENCE. It should be started deliberately for a concrete release. |
 | [`/safe-database-migration`](../skills/safe-database-migration/README.md) | **On** | Provides a read-only safety preflight before existing schema or production data is changed. This is a narrow, high-risk trigger where automatic protection is valuable. |
+| [`/multi-tenant-isolation-review`](../skills/multi-tenant-isolation-review/README.md) | **Off** | Starts a broad cross-tenant audit across authorization, lifecycle, storage, privileged paths, async systems, and derived data. It requires an explicit tenant model and controlled test evidence. |
 
 ## Enable Automatic use
 
@@ -75,6 +76,18 @@ Migration-specific RLS consequences are already covered by `/safe-database-migra
 This skill reviews build evidence, critical flows, security, migrations, monitoring, privacy, accessibility, rollback, and launch ownership. It produces a formal release decision and therefore requires a specific version, environment, launch stage, and evidence set.
 
 Do not activate it merely because a user asks to publish a page or make an app “production-ready.” Start it deliberately when a full readiness gate is intended.
+
+### `/multi-tenant-isolation-review`
+
+This skill is intentionally broader than a focused RLS review. It reconstructs the tenant model and reviews memberships, invitations, roles, direct object access, database policies, storage, privileged clients, external integrations, search, RAG, exports, analytics, caches, queues, jobs, webhooks, realtime, offboarding, and tenant deletion.
+
+Automatic activation could turn requests such as “add organization switching,” “change the invitation flow,” or “let admins manage members” into a complete read-only audit instead of the requested implementation.
+
+Start it deliberately when the user explicitly asks to verify tenant isolation, investigate cross-organization access, test BOLA/IDOR boundaries, or audit a multi-tenant SaaS authorization model.
+
+Recommended setting:
+
+> Automatic use: Off
 
 ## Library rule
 
