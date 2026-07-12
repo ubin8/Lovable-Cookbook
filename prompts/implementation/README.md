@@ -10,6 +10,7 @@ Implementation recipes make focused changes inside an existing Lovable project. 
 | [`extend-existing-flow.md`](extend-existing-flow.md) | Add one branch, step, state, role, outcome, or side effect while preserving the original flow | `analyze-existing-project`, `assess-change-impact`, `create-acceptance-criteria`, or `plan-feature` |
 | [`refactor-without-behavior-change.md`](refactor-without-behavior-change.md) | Improve internal structure while preserving observable behavior and public contracts | `analyze-existing-project`, characterization tests, or `assess-change-impact` for shared code |
 | [`add-error-and-empty-states.md`](add-error-and-empty-states.md) | Add explicit loading, empty, permission, partial-failure, error, and recovery states to an existing feature | `create-acceptance-criteria`, an existing stable data contract, and relevant testing prompts |
+| [`add-responsive-behavior.md`](add-responsive-behavior.md) | Adapt an existing interface across supported viewport ranges while preserving hierarchy, core actions, and desktop behavior | `create-acceptance-criteria`, `assess-change-impact`, or `add-error-and-empty-states` when state variants also need responsive treatment |
 
 ## Which recipe should you use?
 
@@ -20,6 +21,8 @@ Use **`extend-existing-flow`** when a working flow needs one additional branch o
 Use **`refactor-without-behavior-change`** when the desired result is structural improvement only. Do not use it for bug fixes, changed UX, migrations, or new behavior.
 
 Use **`add-error-and-empty-states`** when the underlying feature and data contract already work, but user-visible states are missing, conflated, generic, or unrecoverable.
+
+Use **`add-responsive-behavior`** when the feature already works functionally but needs deliberate mobile, tablet, desktop, or container-based adaptation without changing product scope or information architecture.
 
 ## Recommended workflows
 
@@ -49,6 +52,13 @@ Use **`add-error-and-empty-states`** when the underlying feature and data contra
 2. Use [`add-error-and-empty-states.md`](add-error-and-empty-states.md).
 3. Verify each applicable state deliberately, including safe retry and permission-sensitive actions.
 
+### Add responsive behavior
+
+1. Confirm the supported viewport ranges, primary task, content priority, and critical actions.
+2. Use [`assess-change-impact`](../planning/assess-change-impact.md) first when shared shells, navigation, tables, overlays, or design-system primitives may be affected.
+3. Use [`add-responsive-behavior.md`](add-responsive-behavior.md).
+4. Verify real content, state variants, interaction quality, desktop regression, and breakpoint boundaries.
+
 ## Stop and replan when
 
-An implementation recipe should stop when inspection reveals a breaking redesign, unresolved authorization or state model, destructive migration, provider replacement, unstable data contract, several independent flows, or behavior that cannot be verified reliably.
+An implementation recipe should stop when inspection reveals a breaking redesign, unresolved authorization or state model, destructive migration, provider replacement, unstable data contract, several independent flows, behavior that cannot be verified reliably, or responsive work that actually requires changing information architecture or rebuilding the application shell.
