@@ -1,76 +1,102 @@
 # Lovable Cookbook
 
-A practical, community-driven collection of reusable skills, prompts, workflows, templates, checklists, and examples for building better products with [Lovable](https://lovable.dev/).
+A practical, community-driven collection of reusable **skills, prompt recipes, workflows, templates, checklists, and examples** for building better products with [Lovable](https://lovable.dev/).
 
-> This repository is independent and is not an official Lovable project.
+> [!IMPORTANT]
+> This is an independent community project. It is not affiliated with or endorsed by Lovable.
 
-## Why this repository exists
+## The idea
 
-Lovable can generate impressive results quickly, but speed alone does not produce a good product. Weak requirements, vague prompts, missing edge cases, poor data models, and unreviewed security decisions still lead to fragile applications.
+Lovable makes implementation fast. It does not remove the need for product judgment, clear requirements, sound data models, security decisions, testing, or maintenance.
 
-The **Lovable Cookbook** turns repeatable product and engineering work into reusable building blocks. The goal is not to collect random “magic prompts”, but to document workflows that are clear, testable, and maintainable.
-
-## What belongs here
-
-- **Skills** — structured instructions for recurring roles or workflows
-- **Prompt recipes** — focused prompts with context, constraints, and expected output
-- **Project templates** — reusable specifications, decision records, and planning documents
-- **Guides** — practical explanations for common Lovable workflows
-- **Examples** — realistic end-to-end use cases
-- **Checklists** — compact quality gates before shipping
-
-## Repository structure
-
-```text
-lovable-cookbook/
-├── skills/                  # Reusable role and workflow instructions
-├── templates/
-│   ├── prompts/             # Prompt recipe templates
-│   └── project-docs/        # PRDs, decisions, handoff documents
-├── guides/                  # Practical Lovable guides
-├── examples/                # Worked examples
-├── checklists/              # Review and release checklists
-└── .github/                 # Contribution and issue templates
-```
+The **Lovable Cookbook** turns repeatable product and engineering work into explicit, reusable building blocks. It is deliberately not a dump of “magic prompts.” Every artifact should explain when it applies, what context it needs, what it produces, where it can fail, and how its result can be checked.
 
 ## Start here
 
 1. Read [How to use this cookbook](guides/how-to-use-this-cookbook.md).
-2. Copy the relevant recipe or skill into your working context.
-3. Replace every placeholder with project-specific facts.
+2. Choose a skill, guide, template, or checklist from the catalog below.
+3. Replace placeholders with facts from your own project.
 4. Review assumptions before asking Lovable to implement anything.
-5. Validate the result with the [pre-launch checklist](checklists/pre-launch.md).
+5. Validate the result with the relevant checklist.
 
-## Included first skill
+## Catalog
 
-### Feature Planner
+### Skills
 
-[`/feature-planner`](skills/feature-planner/SKILL.md) is a critical planning skill for new features and larger product changes. It forces the idea through user-problem validation, scope definition, UX analysis, technical constraints, risks, and acceptance criteria before implementation begins.
+| Skill | Purpose | Status |
+| --- | --- | --- |
+| [`/feature-planner`](skills/feature-planner/SKILL.md) | Critically plan a new feature or larger product change before implementation | Available |
+| `/ux-reviewer` | Review flows, states, hierarchy, accessibility, and usability | Planned |
+| `/bug-investigator` | Structure reproduction, diagnosis, evidence, and fix validation | Planned |
+| `/data-model-planner` | Design entities, relationships, ownership, constraints, and migrations | Planned |
+| `/security-reviewer` | Identify practical security and privacy risks before release | Planned |
 
-Use it when a request needs product decisions. Do not use it for tiny styling changes, isolated copy edits, or straightforward bug fixes.
+### Guides
 
-## Recipe quality standard
+- [How to use this cookbook](guides/how-to-use-this-cookbook.md)
 
-A useful contribution should answer five questions:
+### Checklists
 
-1. **When should this be used?**
-2. **What inputs are required?**
-3. **What process should be followed?**
-4. **What should the output contain?**
-5. **How can the result be checked?**
+- [Pre-build checklist](checklists/pre-build.md)
+- [Pre-launch checklist](checklists/pre-launch.md)
 
-Recipes that only say “make this better” or promise guaranteed results are not useful enough for this repository.
+### Templates
+
+- [Skill template](templates/skills/SKILL.template.md)
+
+## Repository structure
+
+```text
+Lovable-Cookbook/
+├── skills/                  # Reusable role and workflow instructions
+├── templates/               # Templates for new cookbook artifacts
+├── guides/                  # Practical Lovable workflows and explanations
+├── examples/                # End-to-end worked examples
+├── checklists/              # Compact quality gates
+└── .github/                 # Contribution and issue templates
+```
+
+## Included skill: Feature Planner
+
+[`/feature-planner`](skills/feature-planner/SKILL.md) acts as a critical product manager, UX planner, and technical analyst. It is intended for features and larger changes that require decisions before implementation.
+
+It forces the proposal through:
+
+- user-problem validation;
+- scope and MVP definition;
+- UX states and recovery paths;
+- functional requirements;
+- data, permissions, and integrations;
+- risks, edge cases, and trade-offs;
+- measurable acceptance criteria;
+- a clear proceed, revise, validate, or reject recommendation.
+
+Do not use it for tiny copy or styling changes, direct implementation requests, or straightforward bug fixes.
+
+## Quality standard
+
+A contribution is useful only when it answers these questions:
+
+1. **When should it be used?**
+2. **When should it not be used?**
+3. **Which inputs and assumptions are required?**
+4. **Which process should be followed?**
+5. **What should the output contain?**
+6. **How can the result be validated?**
+7. **What are the limits and risks?**
+
+Vague instructions such as “make this better,” unsupported guarantees, and project-specific prompt dumps do not meet the bar.
 
 ## Planned areas
 
 - Product discovery and feature planning
 - UI and UX review
-- Database and Supabase design
+- Supabase and database design
 - Authentication and authorization
 - Payments and subscriptions
 - SEO, analytics, and accessibility
 - Testing and debugging
-- Security review
+- Security and privacy review
 - Deployment and release management
 - Refactoring and technical debt
 - Prompt patterns and anti-patterns
@@ -79,7 +105,7 @@ See the [roadmap](ROADMAP.md) for the proposed sequence.
 
 ## Contributing
 
-Contributions are welcome, but they should solve a repeatable problem rather than showcase a single lucky prompt. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request.
+Contributions are welcome when they solve a repeatable problem and are explicit about their limits. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request.
 
 ## License
 
