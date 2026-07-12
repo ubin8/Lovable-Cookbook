@@ -10,6 +10,7 @@ Good candidates include:
 
 - a skill for a repeatable product, engineering, security, or review workflow;
 - durable Workspace Knowledge that applies across projects;
+- reusable Project Knowledge structure for one concrete application;
 - a practical guide for a common Lovable workflow or decision;
 - a checklist that catches meaningful mistakes before build or launch;
 - a worked example that teaches a reusable method;
@@ -19,7 +20,7 @@ Good candidates include:
 
 Avoid contributions that:
 
-- are useful only for one private project;
+- are useful only for one private project unless they are sanitized examples;
 - depend on hidden context;
 - promise guaranteed outcomes;
 - encourage implementation before requirements are understood;
@@ -27,7 +28,8 @@ Avoid contributions that:
 - copy proprietary documentation or paid material;
 - include credentials, private URLs, personal data, or customer information;
 - duplicate an existing artifact without a clear improvement;
-- place project-specific or temporary instructions in Workspace Knowledge.
+- place project-specific or temporary instructions in Workspace Knowledge;
+- present speculative Project Knowledge as verified project fact.
 
 ## Before you start
 
@@ -56,7 +58,8 @@ Example branch names:
 ```text
 skill/webhook-reliability-review
 knowledge/workspace-security-rules
-guide/supabase-auth
+knowledge/project-template
+example/project-knowledge-saas
 fix/broken-link
 docs/clarify-security-policy
 ```
@@ -120,6 +123,28 @@ Rules:
 - Secrets, credentials, private URLs, and customer information are prohibited.
 - Do not duplicate content that already has an authoritative location.
 
+### Project Knowledge
+
+Project Knowledge defines durable context for one concrete application.
+
+Use this structure:
+
+```text
+project-knowledge/
+├── README.md
+└── TEMPLATE.md
+```
+
+Rules:
+
+- `TEMPLATE.md` should cover stable product, domain, permission, tenant, data, integration, design, security, testing, and operational context.
+- Remove irrelevant sections rather than leaving unresolved placeholders in a finished configuration.
+- Do not include temporary task instructions, implementation prompts, active incident notes, or short-lived priorities.
+- Do not state speculative product rules, permissions, compliance guarantees, backup behavior, or security properties as facts.
+- Secrets, credentials, private URLs, customer data, and production tokens are prohibited.
+- Sanitized Project Knowledge examples may be added under `examples/` when they teach a reusable method and contain no private project information.
+- Workspace-wide defaults belong in Workspace Knowledge; only more specific project rules belong in Project Knowledge.
+
 ### Guides
 
 Guides should explain a practical workflow rather than paraphrase vendor documentation. Separate stable principles from provider-specific steps and note where details may change.
@@ -168,6 +193,7 @@ Before opening a pull request, confirm:
 - [ ] Risks, limitations, and edge cases are covered.
 - [ ] Supporting references contain no hidden essential rules.
 - [ ] Workspace Knowledge contains no project-specific or temporary instructions.
+- [ ] Project Knowledge contains no temporary tasks, secrets, or unsupported claims.
 - [ ] Examples contain no secrets or private data.
 - [ ] The root catalog is updated only when necessary.
 - [ ] The contribution does not duplicate existing material without improvement.
