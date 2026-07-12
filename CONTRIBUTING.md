@@ -56,7 +56,7 @@ Example branch names:
 ```text
 skill/ux-reviewer
 guide/supabase-auth
-fix/broken-roadmap-link
+fix/broken-link
 docs/clarify-security-policy
 ```
 
@@ -64,13 +64,41 @@ docs/clarify-security-policy
 
 ### Skills
 
+Every skill must have a main file:
+
+```text
+skills/<skill-name>/SKILL.md
+```
+
+A skill may also include supporting files when the workflow is too broad for one readable file:
+
+```text
+skills/rls-security-review/
+├── SKILL.md
+└── references/
+    ├── review-workflow.md
+    ├── testing.md
+    └── severity-and-reporting.md
+```
+
+The main `SKILL.md` must remain the authoritative entry point. It should contain the frontmatter, trigger and non-trigger rules, role, core behavior, output contract, hard constraints, and links to every supporting file.
+
+Reference files should:
+
+- cover one clearly named concern;
+- be loaded only when relevant to the skill workflow;
+- avoid duplicating the main file;
+- use relative links;
+- remain understandable outside a single private project;
+- never hide essential safety boundaries or trigger rules.
+
 Skills should normally include:
 
-- skill name;
+- skill name and frontmatter;
 - use cases;
 - explicit non-use cases;
 - role and responsibility;
-- required inputs;
+- required inputs or review-readiness rules;
 - process or decision logic;
 - required output structure;
 - limits and risks;
@@ -80,7 +108,7 @@ Use lowercase kebab-case:
 
 ```text
 skills/feature-planner/SKILL.md
-skills/ux-reviewer/SKILL.md
+skills/rls-security-review/references/review-workflow.md
 ```
 
 ### Guides
@@ -126,6 +154,7 @@ Before opening a pull request, confirm:
 - [ ] Required context and assumptions are listed.
 - [ ] The output or outcome is reviewable.
 - [ ] Risks, limitations, and edge cases are covered.
+- [ ] Supporting references are linked from the main skill and contain no hidden essential rules.
 - [ ] Examples contain no secrets or private data.
 - [ ] Links and file paths work.
 - [ ] The README catalog is updated when necessary.
