@@ -86,6 +86,7 @@ See [Automatic use recommendations](guides/automatic-use.md) for trigger boundar
 | [General Project Knowledge Template](project-knowledge/TEMPLATE.md) | Neutral configurable context for one concrete Lovable application |
 | [SaaS Project Knowledge Template](project-knowledge/SaaS.md) | SaaS-specific context for tenants, memberships, permissions, billing, entitlements, integrations, async work, realtime, and cross-tenant testing |
 | [Marketplace Project Knowledge Template](project-knowledge/Marketplace.md) | Marketplace-specific context for buyers, sellers, operators, listings, orders, payments, payouts, inventory, reviews, disputes, moderation, and party boundaries |
+| [CRM Project Knowledge Template](project-knowledge/internal-tools/CRM.md) | Internal CRM context for ownership, pipelines, activities, communication, imports, automation, reporting, deduplication, consent, and role boundaries |
 | [Project Knowledge guide](project-knowledge/README.md) | Template selection, scope, setup, precedence, maintenance, and separation from Workspace Knowledge |
 
 ### Planned skills
@@ -130,7 +131,9 @@ Lovable-Cookbook/
 │   ├── README.md
 │   ├── TEMPLATE.md
 │   ├── SaaS.md
-│   └── Marketplace.md
+│   ├── Marketplace.md
+│   └── internal-tools/         # Templates for internal operational applications
+│       └── CRM.md
 ├── templates/                  # Reusable contribution templates
 ├── guides/                     # Practical workflows and explanations
 ├── examples/                   # Worked examples
