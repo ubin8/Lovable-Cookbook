@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>Practical skills, knowledge, workflows, templates, and checklists for building better products with Lovable.</strong>
+  <strong>Practical skills, knowledge, prompts, workflows, templates, and checklists for building better products with Lovable.</strong>
   <br />
   Plan clearly · Prompt deliberately · Review critically · Ship responsibly
 </p>
@@ -35,6 +35,7 @@ This is not a dump of “magic prompts.” Every artifact should have a clear pu
 | **Skills** | Structured instructions for recurring product, engineering, security, and review workflows |
 | **Workspace Knowledge** | Durable engineering rules shared across all projects in a Lovable workspace |
 | **Project Knowledge** | Durable product, domain, architecture, permissions, data, integration, design, and operational context for one project |
+| **Prompt recipes** | Focused, reusable prompts organized by the task's primary outcome |
 | **Guides** | Practical explanations for common Lovable workflows and decisions |
 | **Templates** | Reusable starting points for structured artifacts |
 | **Checklists** | Compact quality gates before implementation and launch |
@@ -47,9 +48,9 @@ This is not a dump of “magic prompts.” Every artifact should have a clear pu
 1. Read [How to use this cookbook](guides/how-to-use-this-cookbook.md).
 2. Choose a [Workspace Knowledge baseline](workspace-knowledge/README.md).
 3. Choose a [Project Knowledge template](project-knowledge/README.md) for the concrete application.
-4. Review the [Automatic use recommendations](guides/automatic-use.md).
-5. Select the resource that matches the actual problem.
-6. Adapt it to the verified workspace or project context.
+4. Select a [prompt recipe](prompts/README.md) or skill that matches the actual task.
+5. Review the [Automatic use recommendations](guides/automatic-use.md) when using skills.
+6. Adapt the resource to the verified workspace or project context.
 7. Validate the result before relying on it.
 
 > [!WARNING]
@@ -90,6 +91,15 @@ See [Automatic use recommendations](guides/automatic-use.md) for trigger boundar
 | [Admin Panel Project Knowledge Template](project-knowledge/internal-tools/AdminPanel.md) | Internal admin-panel context for scoped administrative access, impersonation, approvals, overrides, bulk actions, audit logs, sensitive search, and billing corrections |
 | [Project Knowledge guide](project-knowledge/README.md) | Template selection, scope, setup, precedence, maintenance, and separation from Workspace Knowledge |
 
+### Prompt recipes
+
+| Resource | Purpose |
+| --- | --- |
+| [Prompt Recipe Template](prompts/TEMPLATE.md) | Standard structure for reusable Lovable prompts with triggers, context, variables, boundaries, output, and verification |
+| [Prompt Recipe catalog](prompts/README.md) | Category selection, file conventions, adaptation rules, and quality requirements |
+
+Categories: [planning](prompts/planning/) · [implementation](prompts/implementation/) · [debugging](prompts/debugging/) · [database](prompts/database/) · [security](prompts/security/) · [testing](prompts/testing/) · [design](prompts/design/) · [integrations](prompts/integrations/) · [performance](prompts/performance/) · [launch](prompts/launch/)
+
 ### Planned skills
 
 | Skill | Purpose |
@@ -120,22 +130,21 @@ See [Automatic use recommendations](guides/automatic-use.md) for trigger boundar
 ```text
 Lovable-Cookbook/
 ├── skills/                     # Published Lovable skills
-│   └── <skill-name>/
-│       ├── README.md           # Human-readable documentation
-│       ├── SKILL.md            # Authoritative skill instructions
-│       └── references/         # Optional supporting modules
 ├── workspace-knowledge/        # Cross-project workspace rules
-│   ├── README.md
-│   ├── UNIVERSAL.md
-│   └── TEMPLATE.md
 ├── project-knowledge/          # General and product-specific project templates
+├── prompts/
 │   ├── README.md
 │   ├── TEMPLATE.md
-│   ├── SaaS.md
-│   ├── Marketplace.md
-│   └── internal-tools/         # Templates for internal operational applications
-│       ├── CRM.md
-│       └── AdminPanel.md
+│   ├── planning/
+│   ├── implementation/
+│   ├── debugging/
+│   ├── database/
+│   ├── security/
+│   ├── testing/
+│   ├── design/
+│   ├── integrations/
+│   ├── performance/
+│   └── launch/
 ├── templates/                  # Reusable contribution templates
 ├── guides/                     # Practical workflows and explanations
 ├── examples/                   # Worked examples
@@ -151,16 +160,7 @@ Lovable-Cookbook/
 
 ## Quality standard
 
-A useful contribution should make clear:
-
-1. when it should and should not be used;
-2. which context and assumptions are required;
-3. what process or decision logic applies;
-4. what the result must contain;
-5. how the result can be validated;
-6. which limits, risks, and failure cases remain;
-7. whether Automatic use is appropriate;
-8. whether the content is workspace-wide or project-specific.
+A useful contribution should make clear when it applies, which context is required, what process and boundaries apply, what result is expected, how it is verified, and which risks or limitations remain.
 
 The repository does not accept vague prompt dumps, unsupported guarantees, hidden project context, copied proprietary material, unsafe workflows, or claims of verification without evidence.
 
