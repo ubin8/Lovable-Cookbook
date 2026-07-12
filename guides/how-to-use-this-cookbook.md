@@ -12,7 +12,15 @@ The artifacts in this repository are starting points, not substitutes for projec
 
 Do not use a complex skill when a direct instruction would be enough. More process is not automatically better.
 
-## 2. Supply real context
+## 2. Use the complete skill
+
+Every skill starts with `SKILL.md`. Some focused skills need only that file. Broader skills may also include a `references/` directory with supporting workflows, checklists, or reporting rules.
+
+When a skill links to supporting files, keep that directory structure intact. Copying only the main file can remove necessary review logic and produce incomplete results.
+
+The main file remains authoritative for trigger rules, role, output contract, and hard constraints. Reference files provide depth; they do not override the main skill.
+
+## 3. Supply real context
 
 Useful context normally includes:
 
@@ -28,19 +36,19 @@ Useful context normally includes:
 
 Never invent missing facts merely to make a prompt look complete. Mark assumptions explicitly.
 
-## 3. Separate planning from implementation
+## 4. Separate planning from implementation
 
 For significant changes, establish what should be built and why before asking Lovable to implement it.
 
 Combining discovery, design, architecture, implementation, and validation into one vague request creates hidden assumptions and makes failures harder to diagnose.
 
-## 4. Prefer observable requirements
+## 5. Prefer observable requirements
 
 “Make it modern” is subjective. “Use a two-column desktop layout, collapse to one column below 768 px, and keep the primary action visible without horizontal scrolling” can be reviewed.
 
 Requirements should describe behavior, states, constraints, and outcomes rather than relying on taste or undefined quality words.
 
-## 5. Work in bounded changes
+## 6. Work in bounded changes
 
 Prefer one coherent change at a time:
 
@@ -52,7 +60,7 @@ Prefer one coherent change at a time:
 6. review security, accessibility, and regressions;
 7. document the result.
 
-## 6. Verify generated work
+## 7. Verify generated work
 
 Generated output is not automatically production-ready. Depending on the change, verify:
 
@@ -66,17 +74,29 @@ Generated output is not automatically production-ready. Depending on the change,
 - analytics and error reporting;
 - rollback or recovery options.
 
-## 7. Adapt, do not cargo-cult
+## 8. Adapt, do not cargo-cult
 
 A recipe should be shortened, expanded, or rejected when it does not fit the project. Copying every section without understanding it creates ceremony, not quality.
 
-## Recommended first workflow
+## Recommended product workflow
 
 For a non-trivial feature:
 
 1. Run [`/feature-planner`](../skills/feature-planner/SKILL.md).
-2. Resolve its assumptions and choose the MVP scope.
+2. Resolve its blocking questions and choose the MVP scope.
 3. Apply the [pre-build checklist](../checklists/pre-build.md).
 4. Ask Lovable to implement one bounded increment.
 5. Test and review the result.
 6. Apply the [pre-launch checklist](../checklists/pre-launch.md) before release.
+
+## Recommended Supabase authorization workflow
+
+Before launching a Lovable project that relies on Supabase for user or tenant data:
+
+1. Make the schema, migrations, policies, grants, roles, views, RPCs, storage rules, edge functions, and client construction available for review.
+2. Run [`/rls-security-review`](../skills/rls-security-review/SKILL.md) with its complete [`references/`](../skills/rls-security-review/references/) directory.
+3. Resolve confirmed and probable authorization findings before launch.
+4. Add negative tests for peer, cross-tenant, anonymous, and demoted-user access paths.
+5. Re-run the review after material authorization or migration changes.
+
+The RLS review is read-only. It deliberately separates evidence-based review from implementation of fixes.
