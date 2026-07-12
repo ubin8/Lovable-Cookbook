@@ -66,6 +66,7 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 | [`/rls-security-review`](skills/rls-security-review/README.md) | Perform a read-only, evidence-based authorization review of Lovable and Supabase projects, including RLS, grants, tenant isolation, RPCs, views, storage, edge functions, and realistic bypass paths | **Off** |
 | [`/production-readiness`](skills/production-readiness/README.md) | Assess a specific Lovable release and return an evidence-based GO, CONDITIONAL GO, NO-GO, or INSUFFICIENT EVIDENCE decision | **Off** |
 | [`/safe-database-migration`](skills/safe-database-migration/README.md) | Review an existing PostgreSQL, Supabase, or Lovable schema or data change for data safety, compatibility, locking, RLS impact, backfill quality, recovery, and validation before execution | **On** |
+| [`/multi-tenant-isolation-review`](skills/multi-tenant-isolation-review/README.md) | Audit whether organizations, workspaces, teams, or customer accounts are isolated across data, roles, storage, privileged paths, search, exports, analytics, caches, realtime, jobs, webhooks, and tenant lifecycle | **Off** |
 
 See [Automatic use recommendations](guides/automatic-use.md) for trigger boundaries and rationale.
 
@@ -113,10 +114,14 @@ Lovable-Cookbook/
 │   │   ├── README.md
 │   │   ├── SKILL.md
 │   │   └── references/         # Supporting launch-readiness modules
-│   └── safe-database-migration/
+│   ├── safe-database-migration/
+│   │   ├── README.md
+│   │   ├── SKILL.md
+│   │   └── references/         # Supporting migration-safety modules
+│   └── multi-tenant-isolation-review/
 │       ├── README.md
 │       ├── SKILL.md
-│       └── references/         # Supporting migration-safety modules
+│       └── references/         # Supporting tenant-isolation modules
 ├── templates/                  # Templates for cookbook artifacts
 ├── guides/                     # Practical workflows and explanations
 ├── examples/                   # End-to-end worked examples
