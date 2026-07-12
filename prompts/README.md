@@ -1,63 +1,69 @@
 # Prompt Recipes
 
-Prompt recipes are focused, reusable instructions for recurring Lovable tasks. Each recipe should solve one clear problem, state the required context and boundaries, and define how the result is verified.
+Prompt recipes are focused, reusable instructions for recurring Lovable tasks. Each recipe owns one clear output, states its required context and boundaries, and defines how the result is verified.
 
 Use [`TEMPLATE.md`](TEMPLATE.md) when creating a new recipe.
 
-## Categories
+## Browse by category
 
-| Category | Purpose |
+| Category | Primary outcome |
 | --- | --- |
-| [`planning/`](planning/) | Scope features, clarify requirements, compare approaches, analyze existing projects, and prepare safe implementation plans |
-| [`implementation/`](implementation/) | Implement focused product and engineering changes inside an existing project |
-| [`debugging/`](debugging/) | Reproduce failures, gather evidence, isolate causes, and propose or apply targeted fixes |
-| [`database/`](database/) | Work with schemas, migrations, queries, constraints, data integrity, and PostgreSQL behavior |
-| [`security/`](security/) | Review or improve authorization, data exposure, secrets, tenant boundaries, and trusted operations |
-| [`testing/`](testing/) | Create, improve, or execute checks for critical behavior and failure cases |
-| [`design/`](design/) | Improve interfaces, interaction patterns, accessibility, responsiveness, and design-system consistency |
-| [`integrations/`](integrations/) | Add or review APIs, OAuth, webhooks, provider accounts, jobs, and external services |
-| [`performance/`](performance/) | Measure and address rendering, network, bundle, media, query, and Core Web Vitals problems |
-| [`launch/`](launch/) | Prepare releases, verify readiness, review deployment risks, and validate post-launch behavior |
+| [`planning/`](planning/) | Analysis, acceptance criteria, impact assessment, feature plans, and execution sequencing |
+| [`implementation/`](implementation/) | Focused changes inside an existing project |
+| [`debugging/`](debugging/) | Reproduction, evidence gathering, root-cause isolation, and targeted fixes |
+| [`database/`](database/) | Schemas, migrations, queries, constraints, and data integrity |
+| [`security/`](security/) | Authorization, data exposure, secrets, tenant boundaries, and trusted operations |
+| [`testing/`](testing/) | Automated, browser, regression, and failure-path verification |
+| [`design/`](design/) | UI, UX, accessibility, responsiveness, and design-system consistency |
+| [`integrations/`](integrations/) | APIs, OAuth, webhooks, provider accounts, jobs, and external services |
+| [`performance/`](performance/) | Rendering, network, bundle, media, query, and Core Web Vitals analysis |
+| [`launch/`](launch/) | Release readiness, deployment risk, rollout, and post-launch validation |
 
 ## Available recipes
 
-| Recipe | Category | Purpose | Recommended combinations |
-| --- | --- | --- | --- |
-| [`analyze-existing-project`](planning/analyze-existing-project.md) | Planning | Build a read-only, evidence-based map of an existing project's architecture, flows, conventions, risks, and unknowns | Use before `plan-feature` or a focused review skill when the project is not sufficiently understood |
-| [`plan-feature`](planning/plan-feature.md) | Planning | Produce an implementation-ready plan for one feature, grounded in the current project and mapped to concrete verification | Use after `analyze-existing-project` when needed; follow with `break-feature-into-steps` for large or risky features |
-| [`break-feature-into-steps`](planning/break-feature-into-steps.md) | Planning | Convert an approved feature plan into small, ordered, independently verifiable implementation steps | Use after `plan-feature`; combine with focused database, security, tenant, implementation, and testing resources as required |
+### Planning
+
+- [`analyze-existing-project`](planning/analyze-existing-project.md) — map an existing project's architecture, flows, conventions, risks, and unknowns.
+- [`create-acceptance-criteria`](planning/create-acceptance-criteria.md) — turn a request into a precise, testable behavioral contract.
+- [`assess-change-impact`](planning/assess-change-impact.md) — evaluate direct, indirect, compatibility, security, data, and operational impact before implementation.
+- [`plan-feature`](planning/plan-feature.md) — create an implementation-ready plan for one feature.
+- [`break-feature-into-steps`](planning/break-feature-into-steps.md) — split an approved plan into small, ordered, independently verifiable steps.
+
+### Implementation
+
+- [`implement-small-feature`](implementation/implement-small-feature.md) — implement one narrow, understood feature with minimal surface area.
+
+## Recommended sequences
+
+Use only the steps that add distinct value.
+
+### Small, clear feature
+
+`create-acceptance-criteria` → `implement-small-feature`
+
+### Existing project or unclear feature area
+
+`analyze-existing-project` → `create-acceptance-criteria` when needed → `plan-feature` → `break-feature-into-steps` when needed → implementation
+
+### Change to existing behavior
+
+`assess-change-impact` → `create-acceptance-criteria` when the new contract is unclear → `plan-feature` or `break-feature-into-steps` → implementation
 
 ## Combining prompts and skills
 
-Prompts and skills have different roles:
+A prompt recipe produces one focused artifact or change. A skill provides a deeper reusable workflow with stronger triggers, boundaries, references, and output contracts. Neither replaces Workspace Knowledge or Project Knowledge.
 
-- A **prompt recipe** handles one focused task or output.
-- A **skill** provides a deeper reusable workflow with stronger trigger rules, boundaries, references, and output contracts.
-- Workspace Knowledge and Project Knowledge provide persistent context; they are not substitutes for either.
+Useful combinations:
 
-Prefer a sequence instead of combining multiple large instructions into one prompt:
-
-1. Establish context with a planning or analysis recipe.
-2. Define the feature or change with the focused planning prompt or skill.
-3. Break large plans into separately verifiable steps.
-4. Use a focused implementation or review resource for each step.
-5. Verify the affected risk areas before launch.
-
-Current useful combinations:
-
-| Start with | Continue with | Why |
+| Prompt | Skill | Use together when |
 | --- | --- | --- |
-| [`analyze-existing-project`](planning/analyze-existing-project.md) | [`plan-feature`](planning/plan-feature.md) | Converts verified project evidence into a concrete feature specification and technical plan |
-| [`plan-feature`](planning/plan-feature.md) | [`break-feature-into-steps`](planning/break-feature-into-steps.md) | Converts a broad approved plan into focused implementation units with checkpoints |
-| [`analyze-existing-project`](planning/analyze-existing-project.md) | [`/feature-planner`](../skills/feature-planner/README.md) | Supplies evidence and existing-project context to the deeper planning workflow |
-| [`plan-feature`](planning/plan-feature.md) | [`/safe-database-migration`](../skills/safe-database-migration/README.md) | Reviews concrete schema and migration implications before implementation |
-| [`plan-feature`](planning/plan-feature.md) | [`/rls-security-review`](../skills/rls-security-review/README.md) | Reviews the proposed authorization, RLS, storage, RPC, and privileged-operation design |
-| [`plan-feature`](planning/plan-feature.md) | [`/multi-tenant-isolation-review`](../skills/multi-tenant-isolation-review/README.md) | Validates tenant scoping across the proposed feature's full data and operational surface |
-| [`break-feature-into-steps`](planning/break-feature-into-steps.md) | [`/safe-database-migration`](../skills/safe-database-migration/README.md) | Refines risky data steps into compatible migration, rollout, validation, and cleanup boundaries |
-| [`break-feature-into-steps`](planning/break-feature-into-steps.md) | future implementation and testing prompts | Executes and verifies each bounded step separately instead of sending one broad prompt |
-| Completed implementation | [`/production-readiness`](../skills/production-readiness/README.md) | Evaluates the concrete release after implementation and relevant checks are available |
+| `analyze-existing-project` or `plan-feature` | [`/feature-planner`](../skills/feature-planner/README.md) | deeper feature planning needs verified project evidence |
+| `assess-change-impact`, `plan-feature`, or `break-feature-into-steps` | [`/safe-database-migration`](../skills/safe-database-migration/README.md) | schema, data, rollout, compatibility, or rollback risk exists |
+| planning or implementation prompt | [`/rls-security-review`](../skills/rls-security-review/README.md) | authorization, RLS, storage, RPC, or privileged operations are affected |
+| planning or implementation prompt | [`/multi-tenant-isolation-review`](../skills/multi-tenant-isolation-review/README.md) | tenant boundaries span data, files, search, exports, jobs, realtime, or integrations |
+| completed implementation | [`/production-readiness`](../skills/production-readiness/README.md) | a concrete release is ready for evidence-based launch assessment |
 
-Do not chain resources merely because they are related. Add another prompt or skill only when it produces a distinct artifact, verifies a separate risk, or supplies missing evidence.
+Do not chain resources merely because they are related. Add another prompt or skill only when it resolves material ambiguity, produces a distinct artifact, or reviews a separate risk.
 
 ## File convention
 
@@ -67,30 +73,8 @@ Store each recipe as a lowercase kebab-case Markdown file in the closest categor
 prompts/<category>/<recipe-name>.md
 ```
 
-Examples:
-
-```text
-prompts/planning/analyze-existing-project.md
-prompts/planning/plan-feature.md
-prompts/planning/break-feature-into-steps.md
-prompts/debugging/investigate-failed-form-submit.md
-prompts/database/add-column-safely.md
-```
-
-Do not create duplicate copies across categories. Choose the category that matches the recipe's primary outcome and link related recipes when useful.
+Choose the category by the recipe's primary outcome. Do not create duplicate copies across categories.
 
 ## Quality rules
 
-A prompt recipe should:
-
-- address one clear, repeatable task;
-- define use and non-use cases;
-- list required context and reusable variables;
-- distinguish facts, assumptions, and acceptance criteria;
-- preserve existing architecture and behavior outside scope;
-- include explicit safety and prohibited-change boundaries;
-- require evidence before claiming testing, security, deployment, or verification;
-- define the expected output and verification checklist;
-- identify genuinely useful skill or prompt combinations without making them dependencies.
-
-Project-specific facts belong in the recipe variables or supplied context, not in the reusable core. Broad operating behavior belongs in Workspace Knowledge or Project Knowledge rather than being repeated in every prompt.
+Every recipe should define when it applies, required context, reusable variables, explicit boundaries, expected output, and evidence-based verification. Project facts belong in supplied context; durable cross-task behavior belongs in Workspace Knowledge or Project Knowledge.
