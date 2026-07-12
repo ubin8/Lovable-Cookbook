@@ -11,6 +11,7 @@ Good candidates include:
 - a skill for a repeatable product, engineering, security, or review workflow;
 - durable Workspace Knowledge that applies across projects;
 - reusable general or product-specific Project Knowledge templates;
+- a focused prompt recipe with explicit context, constraints, output, and verification;
 - a practical guide for a common Lovable workflow or decision;
 - a checklist that catches meaningful mistakes before build or launch;
 - a worked example that teaches a reusable method;
@@ -29,7 +30,8 @@ Avoid contributions that:
 - include credentials, private URLs, personal data, or customer information;
 - duplicate an existing artifact without a clear improvement;
 - place project-specific or temporary instructions in Workspace Knowledge;
-- present speculative Project Knowledge as verified project fact.
+- present speculative Project Knowledge as verified project fact;
+- add vague prompts without triggers, variables, boundaries, or verification.
 
 ## Before you start
 
@@ -49,7 +51,7 @@ Small corrections, broken links, and obvious documentation fixes can go directly
 2. Create a focused branch from `main`.
 3. Copy the closest available template.
 4. Add one coherent contribution.
-5. Check links, formatting, examples, claims, and naming.
+5. Check links, formatting, examples, claims, naming, and category placement.
 6. Update the root catalog only when adding or removing a top-level resource.
 7. Open a pull request with a clear explanation of the problem and solution.
 
@@ -60,6 +62,7 @@ skill/webhook-reliability-review
 knowledge/workspace-security-rules
 knowledge/project-saas-template
 knowledge/internal-tool-crm
+prompt/database-safe-column-addition
 example/project-knowledge-saas
 fix/broken-link
 docs/clarify-security-policy
@@ -93,21 +96,13 @@ templates/skills/README.template.md
 
 The main `SKILL.md` must remain the authoritative entry point. It must link every required supporting file and must not hide trigger rules or safety constraints in references.
 
-Reference files should:
-
-- cover one clearly named concern;
-- avoid duplicating the main file;
-- use relative links;
-- remain understandable outside a private project;
-- contain no hidden essential trigger or safety rules.
+Reference files should cover one clearly named concern, avoid duplicating the main file, use relative links, remain understandable outside a private project, and contain no hidden essential trigger or safety rules.
 
 Use lowercase kebab-case for skill folders and reference files.
 
 ### Workspace Knowledge
 
 Workspace Knowledge must remain durable and apply across multiple projects in a workspace.
-
-Use this structure:
 
 ```text
 workspace-knowledge/
@@ -128,8 +123,6 @@ Rules:
 
 Project Knowledge defines durable context for one concrete application.
 
-Use this structure:
-
 ```text
 project-knowledge/
 ├── README.md
@@ -141,35 +134,69 @@ project-knowledge/
 
 Rules:
 
-- `TEMPLATE.md` is the neutral starting point and should cover stable product, domain, permission, tenant, data, integration, design, security, testing, and operational context.
-- Product-specific templates such as `SaaS.md` and `Marketplace.md` belong at the top level of `project-knowledge/`.
+- `TEMPLATE.md` is the neutral starting point.
+- Product-specific templates such as `SaaS.md` and `Marketplace.md` belong at the top level.
 - Internal operational applications such as CRM, admin panels, inventory systems, or support tools belong under `project-knowledge/internal-tools/`.
-- Use concise PascalCase filenames for specific templates, such as `SaaS.md`, `Marketplace.md`, `CRM.md`, or `AdminPanel.md`.
+- Use concise PascalCase filenames for specific templates.
 - A specific template must remain reusable across multiple projects of that type and must not contain one company's private conventions.
 - Remove irrelevant sections rather than leaving unresolved placeholders in a finished configuration.
-- Do not include temporary task instructions, implementation prompts, active incident notes, or short-lived priorities.
-- Do not state speculative product rules, permissions, compliance guarantees, backup behavior, or security properties as facts.
-- Secrets, credentials, private URLs, customer data, and production tokens are prohibited.
-- Sanitized Project Knowledge examples may be added under `examples/` when they teach a reusable method and contain no private project information.
+- Do not include temporary task instructions, active incident notes, short-lived priorities, secrets, or unsupported claims.
 - Workspace-wide defaults belong in Workspace Knowledge; only more specific project rules belong in Project Knowledge.
+
+### Prompt recipes
+
+Prompt recipes use this structure:
+
+```text
+prompts/
+├── README.md
+├── TEMPLATE.md
+├── planning/
+├── implementation/
+├── debugging/
+├── database/
+├── security/
+├── testing/
+├── design/
+├── integrations/
+├── performance/
+└── launch/
+```
+
+Store each recipe as:
+
+```text
+prompts/<category>/<lowercase-kebab-case-name>.md
+```
+
+Use [`prompts/TEMPLATE.md`](prompts/TEMPLATE.md) as the starting point.
+
+Rules:
+
+- Choose the category that matches the recipe's primary outcome.
+- Do not duplicate the same recipe across categories.
+- Keep each recipe focused on one clear, repeatable task.
+- Include purpose, use and non-use cases, required context, variables, the reusable prompt, expected output, and verification.
+- Put project-specific facts in variables or supplied context, not in the reusable core.
+- Do not repeat broad Workspace Knowledge or Project Knowledge unless the recipe needs a specific task-level constraint.
+- High-risk recipes must require appropriate planning, evidence, review, and safe boundaries.
+- Prompts must not claim testing, security, deployment, or verification without evidence.
+- Use `integrations/` as the folder name even though the template category value is `INTEGRATION`.
+
+Category boundary examples:
+
+- A schema migration belongs in `database/`, even when it includes security checks.
+- A pure authorization or data-exposure review belongs in `security/`.
+- A bug investigation belongs in `debugging/`; a regression-test recipe belongs in `testing/`.
+- A release-readiness or deployment-validation recipe belongs in `launch/`.
 
 ### Guides
 
 Guides should explain a practical workflow rather than paraphrase vendor documentation. Separate stable principles from provider-specific steps and note where details may change.
 
-```text
-guides/supabase-auth.md
-guides/prompting-existing-projects.md
-```
-
 ### Checklists
 
 Checklist items must be observable. Avoid vague entries such as “the UX is good.” Prefer concrete checks such as “all destructive actions require confirmation and provide a recovery path where feasible.”
-
-```text
-checklists/pre-launch.md
-checklists/auth-review.md
-```
 
 ### Examples
 
@@ -193,7 +220,7 @@ Use clear English and concise Markdown.
 Before opening a pull request, confirm:
 
 - [ ] The contribution solves a repeatable problem.
-- [ ] File names and paths follow repository conventions.
+- [ ] File names, paths, and category placement follow repository conventions.
 - [ ] Links and relative references work.
 - [ ] Use and non-use cases are explicit where applicable.
 - [ ] Required context and assumptions are listed.
@@ -204,6 +231,7 @@ Before opening a pull request, confirm:
 - [ ] Project Knowledge contains no temporary tasks, secrets, unsupported claims, or private conventions.
 - [ ] Product-specific Project Knowledge remains reusable beyond one private application.
 - [ ] Internal-tool templates are grouped under `project-knowledge/internal-tools/`.
+- [ ] Prompt recipes use `prompts/TEMPLATE.md`, remain focused, and include verification.
 - [ ] Examples contain no secrets or private data.
 - [ ] The root catalog is updated only when necessary.
 - [ ] The contribution does not duplicate existing material without improvement.
