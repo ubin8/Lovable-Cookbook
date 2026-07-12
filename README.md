@@ -59,9 +59,9 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 
 ### Available skills
 
-| Skill | Purpose | Status |
-| --- | --- | --- |
-| [`/feature-planner`](skills/feature-planner/SKILL.md) | Critically plan a new feature or larger product change before implementation | Available |
+| Skill | Purpose |
+| --- | --- |
+| [`/feature-planner`](skills/feature-planner/SKILL.md) | Critically plan a new feature or larger product change before implementation |
 
 ### Planned skills
 
