@@ -19,6 +19,7 @@ Workspace Knowledge still applies unless Project Knowledge defines a more specif
 | Resource | Purpose |
 | --- | --- |
 | [`internal-tools/CRM.md`](internal-tools/CRM.md) | CRM-specific template for record ownership, pipelines, stage transitions, activities, communication, imports, bulk actions, automation, reporting, consent, deduplication, and role boundaries |
+| [`internal-tools/AdminPanel.md`](internal-tools/AdminPanel.md) | Admin-panel template for scoped support and operations access, impersonation, approvals, overrides, bulk actions, audit logs, sensitive search, billing corrections, and high-risk administrative workflows |
 
 Additional internal-tool templates should be added under [`internal-tools/`](internal-tools/) so operational applications remain grouped separately from general product models.
 
@@ -52,6 +53,14 @@ Use **`internal-tools/CRM.md`** when:
 - access depends on owner, team, tenant, role, or explicit sharing;
 - pipelines, stage transitions, forecasts, assignments, imports, merges, or bulk operations require rules;
 - email, calendar, telephony, forms, automations, or external CRM data must preserve record and tenant boundaries.
+
+Use **`internal-tools/AdminPanel.md`** when:
+
+- support, operations, tenant-admin, or global-admin users manage another product or platform;
+- administrative access differs by tenant, case, team, role, approval, or target resource;
+- impersonation, overrides, role changes, suspension, deletion, exports, or billing corrections are available;
+- high-impact actions require explicit scope, confirmation, auditability, recovery, or dual control;
+- search, filters, counts, exports, and audit logs must not leak records outside the administrator's permitted scope.
 
 ## When to use Project Knowledge
 
