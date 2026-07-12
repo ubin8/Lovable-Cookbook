@@ -44,11 +44,12 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 ## Start here
 
 1. Read [How to use this cookbook](guides/how-to-use-this-cookbook.md).
-2. Pick the artifact that matches the actual problem.
-3. Replace placeholders with facts from your project.
-4. Remove requirements that do not apply.
-5. Review assumptions before implementation.
-6. Validate the result with the relevant checklist.
+2. Review the [Automatic use recommendations](guides/automatic-use.md).
+3. Pick the artifact that matches the actual problem.
+4. Replace placeholders with facts from your project.
+5. Remove requirements that do not apply.
+6. Review assumptions before implementation.
+7. Validate the result with the relevant checklist.
 
 > [!WARNING]
 > Copying a recipe without adapting it to your project is bad practice. A reusable workflow provides structure, not project truth.
@@ -59,11 +60,14 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 
 ### Available skills
 
-| Skill | Purpose |
-| --- | --- |
-| [`/feature-planner`](skills/feature-planner/README.md) | Critically plan a feature or larger product change before implementation |
-| [`/rls-security-review`](skills/rls-security-review/README.md) | Perform a read-only, evidence-based authorization review of Lovable and Supabase projects, including RLS, grants, tenant isolation, RPCs, views, storage, edge functions, and realistic bypass paths |
-| [`/production-readiness`](skills/production-readiness/README.md) | Assess a specific Lovable release and return an evidence-based GO, CONDITIONAL GO, NO-GO, or INSUFFICIENT EVIDENCE decision |
+| Skill | Purpose | Recommended Automatic use |
+| --- | --- | --- |
+| [`/feature-planner`](skills/feature-planner/README.md) | Critically plan a feature or larger product change before implementation | **On**, only with a narrow planning trigger |
+| [`/rls-security-review`](skills/rls-security-review/README.md) | Perform a read-only, evidence-based authorization review of Lovable and Supabase projects, including RLS, grants, tenant isolation, RPCs, views, storage, edge functions, and realistic bypass paths | **Off** |
+| [`/production-readiness`](skills/production-readiness/README.md) | Assess a specific Lovable release and return an evidence-based GO, CONDITIONAL GO, NO-GO, or INSUFFICIENT EVIDENCE decision | **Off** |
+| [`/safe-database-migration`](skills/safe-database-migration/README.md) | Review an existing PostgreSQL, Supabase, or Lovable schema or data change for data safety, compatibility, locking, RLS impact, backfill quality, recovery, and validation before execution | **On** |
+
+See [Automatic use recommendations](guides/automatic-use.md) for trigger boundaries and rationale.
 
 Each skill folder contains a human-readable `README.md` and an authoritative `SKILL.md`. Complex skills may also include focused reference modules that must remain with the main skill.
 
@@ -79,6 +83,7 @@ Each skill folder contains a human-readable `README.md` and an authoritative `SK
 ### Guides
 
 - [How to use this cookbook](guides/how-to-use-this-cookbook.md)
+- [Automatic use recommendations](guides/automatic-use.md)
 
 ### Checklists
 
@@ -104,10 +109,14 @@ Lovable-Cookbook/
 │   │   ├── README.md
 │   │   ├── SKILL.md
 │   │   └── references/         # Supporting authorization review modules
-│   └── production-readiness/
+│   ├── production-readiness/
+│   │   ├── README.md
+│   │   ├── SKILL.md
+│   │   └── references/         # Supporting launch-readiness modules
+│   └── safe-database-migration/
 │       ├── README.md
 │       ├── SKILL.md
-│       └── references/         # Supporting launch-readiness modules
+│       └── references/         # Supporting migration-safety modules
 ├── templates/                  # Templates for cookbook artifacts
 ├── guides/                     # Practical workflows and explanations
 ├── examples/                   # End-to-end worked examples
@@ -121,7 +130,7 @@ Lovable-Cookbook/
 
 Every published skill should include both files:
 
-- `README.md` explains the skill to people, including use cases, files, setup, expected output, and limitations.
+- `README.md` explains the skill to people, including use cases, files, setup, expected output, limitations, and recommended Automatic use behavior.
 - `SKILL.md` remains the authoritative instruction set used to execute the skill.
 
 A skill may also include narrowly scoped reference files. Supporting files should reduce duplication and keep the main skill readable; they should not hide essential trigger rules or hard constraints.
@@ -139,6 +148,7 @@ A contribution should answer all of these questions:
 5. **What should the output contain?**
 6. **How can the result be validated?**
 7. **What are its limits and risks?**
+8. **Should Automatic use be enabled, and why?**
 
 The following do not meet the bar:
 
@@ -147,7 +157,8 @@ The following do not meet the bar:
 - project-specific prompt dumps with hidden context;
 - workflows that ignore permissions, data ownership, or failure states;
 - content copied from proprietary sources without permission;
-- advice that encourages shipping generated work without review.
+- advice that encourages shipping generated work without review;
+- broad Automatic use triggers that can unexpectedly replace implementation with an audit or planning workflow.
 
 ---
 
