@@ -23,7 +23,9 @@ Use [`TEMPLATE.md`](TEMPLATE.md) when creating a new recipe.
 
 | Recipe | Category | Purpose | Recommended combinations |
 | --- | --- | --- | --- |
-| [`analyze-existing-project`](planning/analyze-existing-project.md) | Planning | Build a read-only, evidence-based map of an existing project's architecture, flows, conventions, risks, and unknowns | Use before `/feature-planner`, `/safe-database-migration`, `/rls-security-review`, `/multi-tenant-isolation-review`, or `/production-readiness` when the existing project is not yet sufficiently understood |
+| [`analyze-existing-project`](planning/analyze-existing-project.md) | Planning | Build a read-only, evidence-based map of an existing project's architecture, flows, conventions, risks, and unknowns | Use before `plan-feature` or a focused review skill when the project is not sufficiently understood |
+| [`plan-feature`](planning/plan-feature.md) | Planning | Produce an implementation-ready plan for one feature, grounded in the current project and mapped to concrete verification | Use after `analyze-existing-project` when needed; follow with `break-feature-into-steps` for large or risky features |
+| [`break-feature-into-steps`](planning/break-feature-into-steps.md) | Planning | Convert an approved feature plan into small, ordered, independently verifiable implementation steps | Use after `plan-feature`; combine with focused database, security, tenant, implementation, and testing resources as required |
 
 ## Combining prompts and skills
 
@@ -36,18 +38,24 @@ Prompts and skills have different roles:
 Prefer a sequence instead of combining multiple large instructions into one prompt:
 
 1. Establish context with a planning or analysis recipe.
-2. Use the focused skill or prompt that owns the main task.
-3. Use a verification-oriented recipe or review skill for the affected risk area.
+2. Define the feature or change with the focused planning prompt or skill.
+3. Break large plans into separately verifiable steps.
+4. Use a focused implementation or review resource for each step.
+5. Verify the affected risk areas before launch.
 
 Current useful combinations:
 
 | Start with | Continue with | Why |
 | --- | --- | --- |
-| [`analyze-existing-project`](planning/analyze-existing-project.md) | [`/feature-planner`](../skills/feature-planner/README.md) | Converts verified project evidence into a scoped feature plan |
-| [`analyze-existing-project`](planning/analyze-existing-project.md) | [`/safe-database-migration`](../skills/safe-database-migration/README.md) | Establishes schema, dependency, data, and migration context before the focused migration review |
-| [`analyze-existing-project`](planning/analyze-existing-project.md) | [`/rls-security-review`](../skills/rls-security-review/README.md) | Maps auth, data, storage, functions, and trusted boundaries before the authorization audit |
-| [`analyze-existing-project`](planning/analyze-existing-project.md) | [`/multi-tenant-isolation-review`](../skills/multi-tenant-isolation-review/README.md) | Identifies tenant resources and flows before the end-to-end isolation review |
-| [`analyze-existing-project`](planning/analyze-existing-project.md) | [`/production-readiness`](../skills/production-readiness/README.md) | Clarifies release scope, architecture, critical flows, and operational dependencies before launch assessment |
+| [`analyze-existing-project`](planning/analyze-existing-project.md) | [`plan-feature`](planning/plan-feature.md) | Converts verified project evidence into a concrete feature specification and technical plan |
+| [`plan-feature`](planning/plan-feature.md) | [`break-feature-into-steps`](planning/break-feature-into-steps.md) | Converts a broad approved plan into focused implementation units with checkpoints |
+| [`analyze-existing-project`](planning/analyze-existing-project.md) | [`/feature-planner`](../skills/feature-planner/README.md) | Supplies evidence and existing-project context to the deeper planning workflow |
+| [`plan-feature`](planning/plan-feature.md) | [`/safe-database-migration`](../skills/safe-database-migration/README.md) | Reviews concrete schema and migration implications before implementation |
+| [`plan-feature`](planning/plan-feature.md) | [`/rls-security-review`](../skills/rls-security-review/README.md) | Reviews the proposed authorization, RLS, storage, RPC, and privileged-operation design |
+| [`plan-feature`](planning/plan-feature.md) | [`/multi-tenant-isolation-review`](../skills/multi-tenant-isolation-review/README.md) | Validates tenant scoping across the proposed feature's full data and operational surface |
+| [`break-feature-into-steps`](planning/break-feature-into-steps.md) | [`/safe-database-migration`](../skills/safe-database-migration/README.md) | Refines risky data steps into compatible migration, rollout, validation, and cleanup boundaries |
+| [`break-feature-into-steps`](planning/break-feature-into-steps.md) | future implementation and testing prompts | Executes and verifies each bounded step separately instead of sending one broad prompt |
+| Completed implementation | [`/production-readiness`](../skills/production-readiness/README.md) | Evaluates the concrete release after implementation and relevant checks are available |
 
 Do not chain resources merely because they are related. Add another prompt or skill only when it produces a distinct artifact, verifies a separate risk, or supplies missing evidence.
 
@@ -63,6 +71,8 @@ Examples:
 
 ```text
 prompts/planning/analyze-existing-project.md
+prompts/planning/plan-feature.md
+prompts/planning/break-feature-into-steps.md
 prompts/debugging/investigate-failed-form-submit.md
 prompts/database/add-column-safely.md
 ```
