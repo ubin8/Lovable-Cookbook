@@ -64,16 +64,33 @@ docs/clarify-security-policy
 
 ### Skills
 
-Every skill must have a main file:
+Every published skill must include two top-level files:
 
 ```text
-skills/<skill-name>/SKILL.md
+skills/<skill-name>/
+├── README.md
+└── SKILL.md
+```
+
+Their responsibilities are deliberately separate:
+
+- `README.md` is human-readable documentation. It explains purpose, use and non-use cases, setup, included files, expected output, limitations, and related resources.
+- `SKILL.md` is the authoritative execution file. It contains frontmatter, trigger rules, role, process, output contract, hard constraints, and links to supporting files.
+
+Do not duplicate the full skill logic in the README. When the two files disagree, `SKILL.md` controls execution, but the inconsistency must be fixed before merge.
+
+Use both templates when creating a skill:
+
+```text
+templates/skills/README.template.md
+templates/skills/SKILL.template.md
 ```
 
 A skill may also include supporting files when the workflow is too broad for one readable file:
 
 ```text
 skills/rls-security-review/
+├── README.md
 ├── SKILL.md
 └── references/
     ├── review-workflow.md
@@ -107,6 +124,7 @@ Skills should normally include:
 Use lowercase kebab-case:
 
 ```text
+skills/feature-planner/README.md
 skills/feature-planner/SKILL.md
 skills/rls-security-review/references/review-workflow.md
 ```
@@ -150,6 +168,8 @@ Use clear English and concise Markdown.
 Before opening a pull request, confirm:
 
 - [ ] The contribution solves a repeatable problem.
+- [ ] Every skill has both `README.md` and `SKILL.md`.
+- [ ] The README explains usage without duplicating the full execution logic.
 - [ ] Use and non-use cases are explicit.
 - [ ] Required context and assumptions are listed.
 - [ ] The output or outcome is reviewable.
