@@ -76,10 +76,12 @@ Each skill folder contains a human-readable `README.md` and an authoritative `SK
 
 | Skill | Purpose |
 | --- | --- |
-| `/ux-reviewer` | Review hierarchy, flows, states, accessibility, and usability |
-| `/bug-investigator` | Structure reproduction, diagnosis, evidence, and fix validation |
-| `/data-model-planner` | Design entities, relationships, ownership, constraints, and migrations |
-| `/implementation-prompter` | Turn an approved plan into a constrained implementation prompt |
+| `/webhook-reliability-review` | Review webhook integrations for signature validation, replay protection, idempotency, duplicate and out-of-order events, retries, timeouts, partial processing, dead-letter handling, secret-safe logging, state reconstruction, and manual reprocessing |
+| `/incident-investigator` | Investigate incidents without changing the system first by collecting symptoms, affected users, timelines, deployments, logs, network and database evidence, reproduction steps, competing hypotheses, impact, and safe containment measures before proposing a repair |
+| `/data-lifecycle-review` | Trace personal and business data from collection through storage, access, third-party transfers, export, retention, account deletion, linked records, and backups; identifies technical gaps but does not provide legal or GDPR certification |
+| `/schema-integrity-review` | Review nullability, unique constraints, foreign keys, deletion behavior, orphaned records, status values, timestamps, indexes, and data consistency |
+| `/state-consistency-review` | Review complex React state management for duplicate sources of truth, stale data, optimistic updates, race conditions, cache invalidation, loading and error states, and form-state consistency |
+| `/performance-root-cause-analysis` | Measure and isolate performance causes across bundle size, unnecessary renders and requests, slow queries, missing indexes, large media, blocking code, and Core Web Vitals, with before-and-after evidence |
 
 ### Guides
 
