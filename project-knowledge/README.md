@@ -6,19 +6,28 @@ Workspace Knowledge still applies unless Project Knowledge defines a more specif
 
 ## Available resources
 
+### General and product models
+
 | Resource | Purpose |
 | --- | --- |
 | [`TEMPLATE.md`](TEMPLATE.md) | General configurable Project Knowledge template for one concrete Lovable application |
 | [`SaaS.md`](SaaS.md) | SaaS-specific template with tenant membership, roles, billing, entitlements, integrations, async processing, realtime, and cross-tenant testing |
 | [`Marketplace.md`](Marketplace.md) | Marketplace-specific template for buyer, seller, operator, listing, order, payment, payout, review, dispute, inventory, moderation, and party-boundary rules |
 
+### Internal tools
+
+| Resource | Purpose |
+| --- | --- |
+| [`internal-tools/CRM.md`](internal-tools/CRM.md) | CRM-specific template for record ownership, pipelines, stage transitions, activities, communication, imports, bulk actions, automation, reporting, consent, deduplication, and role boundaries |
+
+Additional internal-tool templates should be added under [`internal-tools/`](internal-tools/) so operational applications remain grouped separately from general product models.
+
 ## Which template should you use?
 
 Use **`TEMPLATE.md`** when:
 
 - the product model is still unclear;
-- the application is neither primarily SaaS nor a marketplace;
-- tenant membership, transactions, sellers, and buyers are not central concepts;
+- no specific template matches the application;
 - you need the broadest neutral starting point.
 
 Use **`SaaS.md`** when:
@@ -36,6 +45,13 @@ Use **`Marketplace.md`** when:
 - payments, platform fees, refunds, payouts, disputes, reviews, or moderation require explicit rules;
 - inventory, capacity, availability, double booking, or overselling must be controlled;
 - buyer-, seller-, operator-, and public-data boundaries must remain distinct.
+
+Use **`internal-tools/CRM.md`** when:
+
+- leads, contacts, companies, deals, activities, tasks, notes, or communications are central records;
+- access depends on owner, team, tenant, role, or explicit sharing;
+- pipelines, stage transitions, forecasts, assignments, imports, merges, or bulk operations require rules;
+- email, calendar, telephony, forms, automations, or external CRM data must preserve record and tenant boundaries.
 
 ## When to use Project Knowledge
 
