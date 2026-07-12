@@ -18,7 +18,7 @@ Use Project Knowledge for durable facts and rules such as:
 - critical user and business flows;
 - domain concepts and business rules;
 - roles, permissions, tenant boundaries, and sharing rules;
-- backend, schema, authentication, storage, and data sensitivity;
+- backend, authentication, schema, storage, and data sensitivity;
 - account lifecycle, billing, integrations, files, jobs, search, AI, and exports;
 - design language, terminology, accessibility, security, privacy, testing, and operations.
 
@@ -44,16 +44,14 @@ Do not use it for:
 
 ## Scope and precedence
 
-Use this practical order when requirements overlap:
+Use this order when requirements overlap:
 
 1. explicit instruction for the current task;
 2. Project Knowledge;
-3. connected design-system rules;
-4. established project architecture and actual repository configuration;
-5. Workspace Knowledge;
-6. general preferences.
+3. connected design-system rules and established project architecture;
+4. Workspace Knowledge.
 
-Material conflicts should be reported instead of silently resolved. Preserve the safer or less destructive behavior until the conflict is clarified.
+Material conflicts should not be resolved silently. Preserve the safer or less destructive behavior until the conflict is clarified.
 
 ## Maintenance rule
 
