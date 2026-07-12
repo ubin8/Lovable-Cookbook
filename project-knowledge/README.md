@@ -10,14 +10,15 @@ Workspace Knowledge still applies unless Project Knowledge defines a more specif
 | --- | --- |
 | [`TEMPLATE.md`](TEMPLATE.md) | General configurable Project Knowledge template for one concrete Lovable application |
 | [`SaaS.md`](SaaS.md) | SaaS-specific template with tenant membership, roles, billing, entitlements, integrations, async processing, realtime, and cross-tenant testing |
+| [`Marketplace.md`](Marketplace.md) | Marketplace-specific template for buyer, seller, operator, listing, order, payment, payout, review, dispute, inventory, moderation, and party-boundary rules |
 
 ## Which template should you use?
 
 Use **`TEMPLATE.md`** when:
 
-- the project is not primarily a SaaS product;
 - the product model is still unclear;
-- tenant membership, subscriptions, and entitlements are not central concepts;
+- the application is neither primarily SaaS nor a marketplace;
+- tenant membership, transactions, sellers, and buyers are not central concepts;
 - you need the broadest neutral starting point.
 
 Use **`SaaS.md`** when:
@@ -27,6 +28,14 @@ Use **`SaaS.md`** when:
 - roles and permissions differ by tenant or resource;
 - billing, plans, subscriptions, trials, or entitlements affect access;
 - integrations, jobs, webhooks, realtime, search, exports, or AI features must preserve tenant boundaries.
+
+Use **`Marketplace.md`** when:
+
+- the product connects buyers with sellers, providers, or businesses;
+- listings, orders, bookings, purchases, contracts, or fulfillment are central concepts;
+- payments, platform fees, refunds, payouts, disputes, reviews, or moderation require explicit rules;
+- inventory, capacity, availability, double booking, or overselling must be controlled;
+- buyer-, seller-, operator-, and public-data boundaries must remain distinct.
 
 ## When to use Project Knowledge
 
