@@ -61,7 +61,10 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 
 | Skill | Purpose |
 | --- | --- |
-| [`/feature-planner`](skills/feature-planner/SKILL.md) | Critically plan a new feature or larger product change before implementation |
+| [`/feature-planner`](skills/feature-planner/SKILL.md) | Critically plan a feature or larger product change before implementation |
+| [`/rls-security-review`](skills/rls-security-review/SKILL.md) | Perform a read-only, evidence-based authorization review of Lovable and Supabase projects, including RLS, grants, tenant isolation, RPCs, views, storage, edge functions, and realistic bypass paths |
+
+The RLS review is a multi-file skill. Its main instructions are supported by focused reference modules under [`skills/rls-security-review/references/`](skills/rls-security-review/references/).
 
 ### Planned skills
 
@@ -70,7 +73,6 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 | `/ux-reviewer` | Review hierarchy, flows, states, accessibility, and usability |
 | `/bug-investigator` | Structure reproduction, diagnosis, evidence, and fix validation |
 | `/data-model-planner` | Design entities, relationships, ownership, constraints, and migrations |
-| `/security-reviewer` | Identify practical security and privacy risks before release |
 | `/implementation-prompter` | Turn an approved plan into a constrained implementation prompt |
 
 ### Guides
@@ -92,17 +94,24 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 
 ```text
 Lovable-Cookbook/
-├── skills/                  # Reusable role and workflow instructions
-├── templates/               # Templates for cookbook artifacts
-├── guides/                  # Practical workflows and explanations
-├── examples/                # End-to-end worked examples
-├── checklists/              # Review and release quality gates
-├── .github/                 # Community and repository configuration
+├── skills/
+│   ├── feature-planner/
+│   │   └── SKILL.md
+│   └── rls-security-review/
+│       ├── SKILL.md
+│       └── references/        # Supporting checks, workflows, and reporting rules
+├── templates/                 # Templates for cookbook artifacts
+├── guides/                    # Practical workflows and explanations
+├── examples/                  # End-to-end worked examples
+├── checklists/                # Review and release quality gates
+├── .github/                   # Community and repository configuration
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
 └── LICENSE
 ```
+
+A skill may be a single `SKILL.md` or a main skill file supported by narrowly scoped reference files. Supporting files should reduce duplication and keep the main skill readable; they should not hide essential trigger rules or hard constraints.
 
 ---
 
