@@ -9,7 +9,7 @@ Use [`TEMPLATE.md`](TEMPLATE.md) when creating a new recipe.
 | Category | Primary outcome |
 | --- | --- |
 | [`planning/`](planning/) | Analysis, acceptance criteria, impact assessment, feature plans, and execution sequencing |
-| [`implementation/`](implementation/) | Focused changes inside an existing project |
+| [`implementation/`](implementation/) | Focused changes, flow extensions, behavior-preserving refactors, and explicit UI states |
 | [`debugging/`](debugging/) | Reproduction, evidence gathering, root-cause isolation, and targeted fixes |
 | [`database/`](database/) | Schemas, migrations, queries, constraints, and data integrity |
 | [`security/`](security/) | Authorization, data exposure, secrets, tenant boundaries, and trusted operations |
@@ -32,6 +32,9 @@ Use [`TEMPLATE.md`](TEMPLATE.md) when creating a new recipe.
 ### Implementation
 
 - [`implement-small-feature`](implementation/implement-small-feature.md) — implement one narrow, understood feature with minimal surface area.
+- [`extend-existing-flow`](implementation/extend-existing-flow.md) — add one branch, step, state, role, outcome, or side effect while preserving the original path.
+- [`refactor-without-behavior-change`](implementation/refactor-without-behavior-change.md) — improve internal structure while keeping observable behavior and public contracts stable.
+- [`add-error-and-empty-states`](implementation/add-error-and-empty-states.md) — add explicit, accessible, recoverable loading, empty, permission, partial-failure, and error states.
 
 ## Recommended sequences
 
@@ -41,9 +44,21 @@ Use only the steps that add distinct value.
 
 `create-acceptance-criteria` → `implement-small-feature`
 
+### Extend an existing flow
+
+`assess-change-impact` when needed → `create-acceptance-criteria` → `extend-existing-flow`
+
+### Refactor shared or complex code
+
+`analyze-existing-project` when needed → characterization coverage → `refactor-without-behavior-change` → regression verification
+
+### Improve missing UI states
+
+Confirm a stable data contract → `add-error-and-empty-states` → targeted state and accessibility verification
+
 ### Existing project or unclear feature area
 
-`analyze-existing-project` → `create-acceptance-criteria` when needed → `plan-feature` → `break-feature-into-steps` when needed → implementation
+`analyze-existing-project` → `create-acceptance-criteria` when needed → `plan-feature` → `break-feature-into-steps` when needed → focused implementation
 
 ### Change to existing behavior
 
