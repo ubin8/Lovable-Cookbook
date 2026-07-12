@@ -1,287 +1,165 @@
 # Workspace Engineering Knowledge
 
-These rules apply to every project in this workspace unless Project Knowledge,
-an explicitly connected design system, or an established project convention
-defines a more specific requirement.
+These rules apply to all projects in this workspace unless Project Knowledge, a connected design system, or an established project convention is more specific.
 
 ## Working Principles
 
-- Understand the existing project before changing it.
-- Inspect relevant files, dependencies, routes, components, data models,
-  integrations, migrations, and established conventions first.
-- Preserve existing behavior unless the requested change intentionally replaces
-  it.
-- Prefer focused changes over broad rewrites.
-- Reuse existing components, utilities, hooks, schemas, services, and patterns
-  before creating new ones.
-- Do not introduce a new library, provider, framework, or abstraction without a
-  clear project benefit.
-- State assumptions when important context cannot be verified.
-- Never claim that something was tested, secured, deployed, or verified without
-  evidence.
-- Follow more specific Project Knowledge when it applies.
+- Inspect relevant code, routes, dependencies, data models, migrations, integrations, and conventions before changing anything.
+- Preserve existing behavior unless the task intentionally replaces it.
+- Prefer focused changes and reuse existing components, hooks, utilities, schemas, and services.
+- Add libraries, providers, frameworks, or abstractions only for a clear project benefit.
+- State important assumptions and never claim testing, deployment, security, or verification without evidence.
+- Follow more specific Project Knowledge where applicable.
 
-## Lovable Platform and Stack
+## Lovable Stack
 
-- Treat the actual repository and project configuration as the source of truth.
-- Lovable applications are React-based.
-- Projects may use TanStack Start with React and server-side rendering or React
-  with Vite.
-- Inspect `package.json`, route definitions, build configuration, and project
-  structure before making stack-dependent decisions.
-- Do not migrate between TanStack Start and React + Vite unless explicitly
-  requested, technically supported, and separately planned.
-- Preserve the existing routing, rendering, data-loading, styling, and
-  deployment model.
-- Use the project's existing styling and component system. Tailwind CSS and
-  shadcn/ui may be present, but do not install, remove, or replace them merely
-  as a preference.
-- Follow the rules of any connected Lovable design system.
-- Prefer the backend already connected to the project: Lovable Cloud or
-  Supabase.
-- Reuse the existing PostgreSQL database, authentication, storage, realtime,
-  and server-side function setup.
-- Do not introduce a second database, authentication provider, storage system,
-  or backend platform without a clear requirement and explicit approval.
-- External APIs and third-party services may supplement the backend, but keep
-  them behind clear integration boundaries.
-- Never place backend secrets or privileged operations in browser code.
+- Treat the repository and project configuration as the source of truth.
+- Lovable apps are React-based and may use TanStack Start with SSR or React + Vite.
+- Inspect `package.json`, routes, build files, and rendering model before stack-dependent work.
+- Do not migrate between TanStack Start and Vite unless explicitly requested, supported, and separately planned.
+- Preserve existing routing, data loading, styling, deployment, and SSR behavior.
+- Use the existing styling/component system and connected design system.
+- Prefer the connected backend: Lovable Cloud or Supabase.
+- Reuse the existing PostgreSQL, authentication, storage, realtime, and server-function setup.
+- Do not add a second database, auth system, storage provider, or backend without explicit approval.
+- Keep third-party services behind clear integration boundaries.
+- Never expose secrets or privileged operations in browser code.
 
-## Architecture
+## Architecture and Code
 
-- Follow the existing file structure and architectural boundaries.
-- Keep UI, business logic, validation, data access, and external integrations
-  separated where practical.
-- Keep components and functions focused on one clear responsibility.
-- Prefer explicit data flow and predictable state transitions.
-- Avoid premature abstractions and hidden coupling through mutable global state.
-- Keep provider-specific logic behind a dedicated integration boundary.
-- Do not replace working architecture solely to match personal preference.
-- Use server execution for trusted authorization, credentials, protected data
-  access, SSR, and backend processing.
-- Do not move trusted server logic into the browser.
+- Follow existing file structure and architectural boundaries.
+- Separate UI, business logic, validation, data access, and integrations where practical.
+- Keep components and functions focused; prefer explicit data flow.
+- Avoid premature abstraction, unnecessary wrappers, and mutable global coupling.
+- Keep provider-specific logic behind dedicated adapters or services.
+- Do not rewrite working architecture merely to match preference.
+- Use TypeScript consistently where supported.
+- Avoid `any`; prefer explicit types, narrowing, generics, or `unknown`.
+- Do not weaken types to silence errors.
+- Follow existing naming, imports, exports, formatting, and file organization.
+- Remove dead code, unused imports, abandoned code, mocks, and debug output.
+- Do not present placeholders or incomplete handlers as production-ready.
+- Comments should explain intent or constraints, not restate code.
+- Handle nullable, loading, empty, success, and error states explicitly.
+- Do not swallow errors or expose sensitive internals to users.
 
-## Coding Standards
+## Frontend and UX
 
-- Use TypeScript consistently where supported by the project.
-- Avoid `any`; prefer explicit types, generics, narrowing, or `unknown`.
-- Do not weaken types merely to silence compiler errors.
-- Use descriptive names that reflect domain meaning.
-- Follow existing naming, import, export, formatting, and file-organization
-  conventions.
-- Prefer small, readable functions over deeply nested logic.
-- Remove dead code, unused imports, abandoned implementations, and temporary
-  debug output.
-- Do not present placeholders, mocks, or incomplete handlers as finished
-  production behavior.
-- Comments should explain intent, constraints, or non-obvious decisions rather
-  than repeat the code.
-- Handle nullable, optional, loading, empty, error, and success states
-  explicitly.
-- Do not silently swallow errors.
-- Do not expose sensitive implementation details in user-facing errors.
+- Reuse shared components and preserve visual and behavioral consistency.
+- Critical actions need loading, disabled, success, and error states.
+- Prevent duplicate submissions.
+- Forms need labels, validation feedback, and usable focus behavior.
+- Support relevant mobile and desktop layouts.
+- In SSR projects, guard browser-only APIs and prevent request-specific data from leaking through shared server state or caches.
+- Client-side validation improves UX but never replaces trusted validation or authorization.
+- Hidden controls, routes, and frontend filtering are not security controls.
 
-## Frontend and User Experience
+## Data and Backend
 
-- Reuse the existing design system and shared components.
-- Preserve visual and behavioral consistency.
-- Do not bypass connected design-system components with unnecessary one-off
-  replacements.
-- Critical actions must have clear loading, disabled, success, and error states.
-- Prevent accidental duplicate submissions.
-- Forms must have clear labels, validation feedback, and usable focus behavior.
-- Ensure critical flows work on relevant mobile and desktop layouts.
-- In TanStack Start projects, preserve SSR-safe behavior and guard browser-only
-  APIs behind appropriate client boundaries.
-- Client-side validation improves UX but never replaces trusted server
-  validation or authorization.
-- Hidden controls, unavailable routes, and frontend filtering are not security
-  controls.
-
-## Data Access and State
-
-- Use established project data-access and query patterns.
-- Fetch only the data required for the feature.
-- Handle stale, loading, empty, retry, and failure states deliberately.
-- Scope cache keys to every query and authorization discriminator that changes
-  the result.
-- Never share user-, role-, organization-, or tenant-specific cached results
-  across access boundaries.
-- Treat client-provided owner, tenant, organization, role, price, status, and
-  permission values as untrusted.
-- Validate critical state transitions at a trusted backend or database
-  boundary.
-- Do not duplicate authoritative server state into unsynchronized client-only
-  state.
-- In SSR applications, prevent request-specific user data from leaking through
-  shared server state or incorrectly partitioned caches.
-
-## Backend, Database, Auth, and Storage
-
-- Continue using the project's existing Lovable Cloud or Supabase backend.
-- Use PostgreSQL constraints and trusted validation for data integrity.
-- Use the established authentication provider and session model.
-- Do not create parallel user, session, or permission systems without an
-  explicit requirement.
-- Keep privileged database and administrative operations server-side.
-- Use the least-privileged client and role required for each operation.
-- Store private files in appropriately protected storage paths and buckets.
-- Treat signed URLs as temporary bearer credentials.
+- Use established data-access patterns and fetch only required data.
+- Handle stale, empty, retry, and failure states deliberately.
+- Partition cache keys by every query or authorization factor that changes results.
+- Never share user-, role-, organization-, or tenant-specific cached data across access boundaries.
+- Treat client-provided owner, tenant, role, price, status, and permission values as untrusted.
+- Validate critical state transitions at the database, server route, Edge Function, or another trusted boundary.
+- Keep privileged operations server-side and use least privilege.
+- Use PostgreSQL constraints and trusted validation for integrity.
+- Store private files in protected buckets/paths; signed URLs are temporary bearer credentials.
 - Keep test and production configuration separate.
-- Never infer that a deployed setting, secret, policy, backup, or schema is
-  correct solely because related code exists.
 
 ## Database Changes
 
-- Inspect the current schema, migrations, existing data, constraints, indexes,
-  policies, grants, views, functions, triggers, and dependent code before a
-  schema change.
-- Manage schema changes through versioned migrations.
-- Do not perform destructive changes without understanding existing data and
-  dependencies.
-- Check backward compatibility when old and new application versions may
-  overlap.
-- Prefer additive and staged migrations for incompatible changes.
-- Separate schema expansion, compatible application deployment, backfill,
-  validation, switching, and cleanup when necessary.
-- Regenerate and verify database types after schema-contract changes.
-- Do not treat a code revert as a database rollback.
+- Inspect schema, migrations, data, constraints, indexes, RLS, grants, views, functions, triggers, and dependent code first.
+- Use versioned migrations.
+- Avoid destructive changes without data and dependency analysis.
+- Check compatibility when old and new app versions may overlap.
+- Prefer additive, staged migrations for incompatible changes.
+- Separate expansion, compatible deployment, backfill, validation, switch, and cleanup when needed.
+- Regenerate and verify generated database types after contract changes.
+- A code revert is not a database rollback.
 - Do not use `DROP ... CASCADE` as a shortcut.
-- Define pre-change and post-change validation for risky migrations.
-- Never claim production data, backups, or restore capability were verified
-  without evidence.
+- Define pre- and post-change checks for risky migrations.
+- Do not claim backup, restore, or production-data verification without evidence.
 
 ## Security
 
-- Treat all browser and client input as untrusted.
-- Authentication establishes identity; authorization determines allowed
-  actions.
-- Enforce authorization at the database, Edge Function, server route, or another
-  trusted backend boundary.
-- Never rely on UI state, hidden elements, routes, UUIDs, or difficult-to-guess
-  identifiers as access control.
-- Keep secrets and privileged credentials out of browser bundles, source code,
-  logs, screenshots, analytics, and user-visible errors.
-- Never expose service-role, secret, database, provider, or administrative
-  credentials to the browser.
-- Client-exposed environment variables must never contain secrets.
-- Validate ownership, membership, organization, tenant, role, and resource
-  relationships for every protected action.
-- Use RLS for exposed private PostgreSQL data in Lovable Cloud or Supabase.
-- Review both read and write authorization, including effective `USING` and
-  `WITH CHECK` behavior where applicable.
-- Restrict database functions, RPCs, storage operations, privileged backend
-  clients, and public endpoints explicitly.
-- Verify webhook requests using the provider's supported
-  signature-verification method.
-- Do not log passwords, tokens, secrets, full authorization headers, or
-  unnecessary sensitive personal data.
-- Security-sensitive failures must fail closed.
-- Automated security scans support, but do not replace, project-specific
-  security review.
+- Treat all client input as untrusted.
+- Authentication proves identity; authorization determines allowed actions.
+- Enforce authorization at a trusted backend or database boundary.
+- Never use UI state, hidden routes, UUIDs, or hard-to-guess IDs as access control.
+- Keep secrets and privileged credentials out of client bundles, source, logs, screenshots, analytics, URLs, and user-facing errors.
+- Never expose service-role, database, provider, or admin credentials to the browser.
+- Client-exposed environment variables must not contain secrets.
+- Validate ownership, membership, tenant, role, and resource relationships for protected actions.
+- Use RLS for exposed private data in Lovable Cloud or Supabase and review read/write behavior separately.
+- Restrict RPCs, functions, storage operations, privileged clients, and public endpoints explicitly.
+- Verify webhooks with the provider-supported method.
+- Do not log passwords, tokens, full authorization headers, or unnecessary sensitive data.
+- Security-sensitive failures fail closed.
+- Automated scans supplement, not replace, project-specific review.
 
 ## Tenant and Role Boundaries
 
-Apply these rules when a project contains organizations, workspaces, teams,
-customer accounts, or other tenant boundaries.
+Apply when a project has organizations, workspaces, teams, or accounts.
 
-- Derive tenant access from a trusted membership or resource relationship.
-- A client-supplied tenant identifier is not proof of membership.
-- Scope database access, storage, search, analytics, exports, caches,
-  integrations, jobs, webhooks, and realtime features to the effective tenant.
-- Evaluate roles within the correct tenant or resource scope.
-- Validate invitations, membership changes, role changes, removals, ownership
-  transfers, and tenant switching server-side.
-- Consider stale sessions, claims, caches, signed URLs, realtime connections,
-  and queued jobs after permissions change.
-- Intentionally shared or global resources require an explicit sharing model.
+- Derive tenant access from trusted membership or resource relationships.
+- A client-supplied tenant ID is not proof of membership.
+- Scope data, files, search, analytics, exports, caches, integrations, jobs, webhooks, and realtime to the effective tenant.
+- Evaluate roles in the correct tenant/resource scope.
+- Validate invitations, role changes, removals, ownership transfer, and tenant switching server-side.
+- Consider stale sessions, claims, caches, signed URLs, realtime connections, and queued jobs after access changes.
+- Document every intentional global or cross-tenant sharing rule.
 
-## External Integrations and Async Processing
+## Integrations and Async Work
 
-- Bind provider accounts, credentials, OAuth connections, webhook
-  configurations, and external identifiers to the correct user, resource, or
-  tenant.
-- Do not treat job payloads, queue messages, provider IDs, or webhook metadata
-  as authorization proof.
+- Bind provider accounts, credentials, OAuth connections, webhook settings, and external IDs to the correct user, resource, or tenant.
+- Job payloads, queue messages, provider IDs, and webhook metadata are not authorization proof.
 - Verify external events before applying changes.
-- Design retryable operations to be idempotent.
-- Account for duplicate, delayed, missing, and out-of-order events.
-- Background jobs must operate on an explicit, server-validated resource and
-  tenant context.
-- Avoid partial processing that cannot be safely resumed, retried, or
-  reconstructed.
-- Log enough context for diagnosis without exposing secrets or sensitive data.
+- Make retryable operations idempotent and handle duplicate, delayed, missing, and out-of-order events.
+- Background jobs must use an explicit, server-validated resource and tenant context.
+- Avoid partial processing that cannot be resumed or retried safely.
+- Log enough context for diagnosis without exposing protected data.
 
-## Testing and Verification
+## Testing, Reliability, and Performance
 
-- Verify relevant behavior after every meaningful change.
-- Run existing build, type, lint, and automated tests when available.
-- Add or update tests when business rules, validation, permissions, or critical
-  state transitions change.
-- For authorization-sensitive features, test both allowed and denied behavior.
-- Use browser testing for important user flows when appropriate.
-- Inspect console errors and failed network requests for affected flows.
-- Test relevant loading, empty, error, retry, and duplicate-submission states.
-- Test direct route loading and SSR behavior when the project uses TanStack
-  Start.
-- Use controlled test accounts and test data.
-- Never test against real third-party user data.
-- If something cannot be tested, state the limitation instead of marking it as
-  passed.
+- Run available build, type, lint, and automated tests after meaningful changes.
+- Add or update tests for business rules, validation, permissions, and critical state changes.
+- Test allowed and denied behavior for authorization-sensitive features.
+- Use browser testing for critical flows when appropriate; inspect console and network failures.
+- Test relevant loading, empty, validation, error, retry, duplicate-submit, direct-route, and SSR behavior.
+- Use controlled accounts and data; never use real third-party user data.
+- State untested areas instead of marking them verified.
+- Use bounded retries and timeouts; never retry non-idempotent work blindly.
+- Avoid uncontrolled polling, infinite loops, and unbounded queries, lists, payloads, or jobs.
+- Use limits/pagination for growing datasets and consider indexes for common filters, joins, and sorts.
+- Do not claim scalability without evidence.
 
-## Reliability and Performance
+## Documentation and Prohibited Patterns
 
-- Make failures visible and diagnosable.
-- Use bounded retries and appropriate timeouts for external operations.
-- Do not retry non-idempotent operations blindly.
-- Preserve enough context to investigate partial failures.
-- Avoid uncontrolled polling, infinite loops, unbounded queries, and unbounded
-  background work.
-- Consider unavailable dependencies, malformed responses, timeouts, and partial
-  provider failures.
-- Avoid unbounded lists, payloads, loops, and database queries.
-- Use pagination or limits for datasets that can grow.
-- Avoid unnecessary repeated requests and avoidable rendering work.
-- Consider indexes for commonly filtered, joined, or sorted columns.
-- Do not claim scalability without appropriate measurements or tests.
-- Keep performance concerns separate from correctness and security findings.
-
-## Documentation and Maintainability
-
-- Keep Project Knowledge, architecture decisions, setup instructions,
-  environment requirements, and integration assumptions current.
-- Document non-obvious constraints and important external dependencies.
-- Update generated types, schemas, tests, and documentation after contract
-  changes.
-- Avoid duplicating documentation that already has an authoritative location.
-- Record assumptions and unresolved risks when they affect future work.
-- Do not store temporary task instructions in Workspace Knowledge.
-
-## Prohibited Patterns
+- Keep Project Knowledge, setup, architecture decisions, environment requirements, and integration assumptions current.
+- Update generated types, schemas, tests, and relevant docs after contract changes.
+- Record assumptions and unresolved risks.
+- Do not store temporary tasks in Workspace Knowledge.
 
 Do not:
 
-- migrate the frontend or backend stack without explicit approval
-- introduce a parallel database, authentication, or storage platform without a
-  clear requirement
+- migrate frontend/backend stacks without approval
+- create parallel auth, database, storage, or permission systems without a clear requirement
 - expose secrets or privileged credentials
 - use client state as authorization
-- silently weaken validation, RLS, permissions, or constraints
-- perform destructive database changes without impact analysis
-- introduce duplicate implementations when an existing shared solution is
-  appropriate
+- weaken validation, RLS, permissions, or constraints to make a feature work
+- perform destructive changes without impact analysis
 - ignore build, type, test, console, or network failures
 - claim verification without evidence
-- use a broad rewrite when a focused change is sufficient
-- leave temporary debug, test, mock, or bypass behavior enabled in production
+- use broad rewrites where focused changes suffice
+- leave debug, mock, test, or bypass behavior enabled in production
 
 ## Completion Standard
 
 Before declaring work complete:
 
-1. Confirm the requested behavior is implemented.
-2. Confirm affected existing behavior still works.
-3. Perform or describe the relevant verification.
-4. Check security, data, compatibility, SSR, and operational implications.
-5. Remove temporary code and debugging output.
-6. State any unverified areas, assumptions, or residual risks.
+1. Confirm the requested behavior and affected existing behavior.
+2. Run or describe relevant verification.
+3. Review security, data, compatibility, SSR, and operational impact.
+4. Remove temporary code and debugging output.
+5. State unverified areas, assumptions, and residual risks.
