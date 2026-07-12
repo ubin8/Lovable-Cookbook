@@ -59,6 +59,7 @@ Example branch names:
 skill/webhook-reliability-review
 knowledge/workspace-security-rules
 knowledge/project-saas-template
+knowledge/internal-tool-crm
 example/project-knowledge-saas
 fix/broken-link
 docs/clarify-security-policy
@@ -133,14 +134,17 @@ Use this structure:
 project-knowledge/
 ├── README.md
 ├── TEMPLATE.md
-└── <ProductType>.md   # optional specific template, for example SaaS.md
+├── <ProductType>.md          # optional top-level product template
+└── internal-tools/           # internal operational applications
+    └── <ToolType>.md
 ```
 
 Rules:
 
 - `TEMPLATE.md` is the neutral starting point and should cover stable product, domain, permission, tenant, data, integration, design, security, testing, and operational context.
-- Product-specific templates such as `SaaS.md` should narrow or reorganize the general template around recurring needs of that product type.
-- Use concise PascalCase filenames for product-specific templates, such as `SaaS.md`, `Marketplace.md`, or `InternalTool.md`.
+- Product-specific templates such as `SaaS.md` and `Marketplace.md` belong at the top level of `project-knowledge/`.
+- Internal operational applications such as CRM, admin panels, inventory systems, or support tools belong under `project-knowledge/internal-tools/`.
+- Use concise PascalCase filenames for specific templates, such as `SaaS.md`, `Marketplace.md`, `CRM.md`, or `AdminPanel.md`.
 - A specific template must remain reusable across multiple projects of that type and must not contain one company's private conventions.
 - Remove irrelevant sections rather than leaving unresolved placeholders in a finished configuration.
 - Do not include temporary task instructions, implementation prompts, active incident notes, or short-lived priorities.
@@ -199,6 +203,7 @@ Before opening a pull request, confirm:
 - [ ] Workspace Knowledge contains no project-specific or temporary instructions.
 - [ ] Project Knowledge contains no temporary tasks, secrets, unsupported claims, or private conventions.
 - [ ] Product-specific Project Knowledge remains reusable beyond one private application.
+- [ ] Internal-tool templates are grouped under `project-knowledge/internal-tools/`.
 - [ ] Examples contain no secrets or private data.
 - [ ] The root catalog is updated only when necessary.
 - [ ] The contribution does not duplicate existing material without improvement.
