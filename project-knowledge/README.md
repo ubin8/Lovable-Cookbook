@@ -4,11 +4,29 @@ Project Knowledge defines durable context for one specific Lovable project. It r
 
 Workspace Knowledge still applies unless Project Knowledge defines a more specific rule for the current project.
 
-## Available resource
+## Available resources
 
 | Resource | Purpose |
 | --- | --- |
-| [`TEMPLATE.md`](TEMPLATE.md) | Configurable Project Knowledge template for one concrete Lovable application |
+| [`TEMPLATE.md`](TEMPLATE.md) | General configurable Project Knowledge template for one concrete Lovable application |
+| [`SaaS.md`](SaaS.md) | SaaS-specific template with tenant membership, roles, billing, entitlements, integrations, async processing, realtime, and cross-tenant testing |
+
+## Which template should you use?
+
+Use **`TEMPLATE.md`** when:
+
+- the project is not primarily a SaaS product;
+- the product model is still unclear;
+- tenant membership, subscriptions, and entitlements are not central concepts;
+- you need the broadest neutral starting point.
+
+Use **`SaaS.md`** when:
+
+- the application serves organizations, workspaces, teams, or customer accounts;
+- users can belong to one or more tenants;
+- roles and permissions differ by tenant or resource;
+- billing, plans, subscriptions, trials, or entitlements affect access;
+- integrations, jobs, webhooks, realtime, search, exports, or AI features must preserve tenant boundaries.
 
 ## When to use Project Knowledge
 
@@ -32,7 +50,7 @@ Do not use it for:
 
 ## Recommended setup
 
-1. Copy [`TEMPLATE.md`](TEMPLATE.md).
+1. Choose the general template or the closest specific template.
 2. Replace every placeholder with verified project information.
 3. Remove sections and lines that do not apply.
 4. Resolve conflicts with the actual repository, connected design system, and Workspace Knowledge.
