@@ -46,7 +46,7 @@ This is not a dump of “magic prompts.” Every artifact should have a clear pu
 
 1. Read [How to use this cookbook](guides/how-to-use-this-cookbook.md).
 2. Choose a [Workspace Knowledge baseline](workspace-knowledge/README.md).
-3. Configure [Project Knowledge](project-knowledge/README.md) for the concrete application.
+3. Choose a [Project Knowledge template](project-knowledge/README.md) for the concrete application.
 4. Review the [Automatic use recommendations](guides/automatic-use.md).
 5. Select the resource that matches the actual problem.
 6. Adapt it to the verified workspace or project context.
@@ -83,8 +83,9 @@ See [Automatic use recommendations](guides/automatic-use.md) for trigger boundar
 
 | Resource | Purpose |
 | --- | --- |
-| [Project Knowledge Template](project-knowledge/TEMPLATE.md) | Configurable durable context for one concrete Lovable application |
-| [Project Knowledge guide](project-knowledge/README.md) | Scope, setup, precedence, maintenance, and separation from Workspace Knowledge |
+| [General Project Knowledge Template](project-knowledge/TEMPLATE.md) | Neutral configurable context for one concrete Lovable application |
+| [SaaS Project Knowledge Template](project-knowledge/SaaS.md) | SaaS-specific context for tenants, memberships, permissions, billing, entitlements, integrations, async work, realtime, and cross-tenant testing |
+| [Project Knowledge guide](project-knowledge/README.md) | Template selection, scope, setup, precedence, maintenance, and separation from Workspace Knowledge |
 
 ### Planned skills
 
@@ -124,9 +125,10 @@ Lovable-Cookbook/
 │   ├── README.md
 │   ├── UNIVERSAL.md
 │   └── TEMPLATE.md
-├── project-knowledge/          # Durable rules and context for one project
+├── project-knowledge/          # General and product-specific project templates
 │   ├── README.md
-│   └── TEMPLATE.md
+│   ├── TEMPLATE.md
+│   └── SaaS.md
 ├── templates/                  # Reusable contribution templates
 ├── guides/                     # Practical workflows and explanations
 ├── examples/                   # Worked examples
