@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>Practical skills, knowledge, prompts, workflows, templates, and checklists for building better products with Lovable.</strong>
+  <strong>Practical skills, knowledge, workflows, templates, and checklists for building better products with Lovable.</strong>
   <br />
   Plan clearly · Prompt deliberately · Review critically · Ship responsibly
 </p>
@@ -24,22 +24,21 @@
 
 **Lovable Cookbook** is a curated collection of reusable resources for people building applications with [Lovable](https://lovable.dev/).
 
-Lovable can accelerate implementation, but it does not replace product judgment, precise requirements, sound architecture, secure data access, testing, or maintenance. This repository turns those recurring tasks into explicit workflows and durable knowledge that can be reused, reviewed, and improved.
+Lovable can accelerate implementation, but it does not replace product judgment, precise requirements, sound architecture, secure data access, testing, or maintenance. This repository turns recurring work into explicit, reusable resources that can be reviewed and improved.
 
-This is not a dump of “magic prompts.” Every useful artifact should make its purpose, required context, limits, expected output, and validation method clear.
+This is not a dump of “magic prompts.” Every artifact should have a clear purpose, required context, boundaries, expected outcome, and validation method.
 
 ## What you will find here
 
 | Area | What it contains |
 | --- | --- |
-| **Skills** | Structured instructions for recurring product, UX, engineering, and review roles |
-| **Workspace Knowledge** | Durable engineering rules shared across every project in a Lovable workspace |
+| **Skills** | Structured instructions for recurring product, engineering, security, and review workflows |
+| **Workspace Knowledge** | Durable engineering rules shared across all projects in a Lovable workspace |
 | **Project Knowledge** | Project-specific product, domain, architecture, and integration context — coming later |
-| **Prompt recipes** | Focused prompts with context, constraints, expected output, and quality checks |
 | **Guides** | Practical explanations for common Lovable workflows and decisions |
-| **Templates** | Reusable structures for specifications, prompts, decisions, and handoffs |
-| **Checklists** | Compact quality gates before implementation, review, and launch |
-| **Examples** | Worked examples showing how the pieces fit together in realistic projects |
+| **Templates** | Reusable starting points for structured artifacts |
+| **Checklists** | Compact quality gates before implementation and launch |
+| **Examples** | Worked examples showing how multiple resources fit together |
 
 ---
 
@@ -48,14 +47,12 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 1. Read [How to use this cookbook](guides/how-to-use-this-cookbook.md).
 2. Choose a [Workspace Knowledge baseline](workspace-knowledge/README.md).
 3. Review the [Automatic use recommendations](guides/automatic-use.md).
-4. Pick the artifact that matches the actual problem.
-5. Replace placeholders with facts from your workspace or project.
-6. Remove requirements that do not apply.
-7. Review assumptions before implementation.
-8. Validate the result with the relevant checklist.
+4. Select the resource that matches the actual problem.
+5. Adapt it to the verified workspace or project context.
+6. Validate the result before relying on it.
 
 > [!WARNING]
-> Copying an artifact without adapting it to your workspace or project is bad practice. A reusable resource provides structure, not project truth.
+> Copying an artifact without adapting it to the actual workspace or project creates false confidence. A reusable resource provides structure, not project truth.
 
 ---
 
@@ -66,35 +63,31 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 | Skill | Purpose | Recommended Automatic use |
 | --- | --- | --- |
 | [`/feature-planner`](skills/feature-planner/README.md) | Critically plan a feature or larger product change before implementation | **On**, only with a narrow planning trigger |
-| [`/rls-security-review`](skills/rls-security-review/README.md) | Perform a read-only, evidence-based authorization review of Lovable and Supabase projects, including RLS, grants, tenant isolation, RPCs, views, storage, edge functions, and realistic bypass paths | **Off** |
-| [`/production-readiness`](skills/production-readiness/README.md) | Assess a specific Lovable release and return an evidence-based GO, CONDITIONAL GO, NO-GO, or INSUFFICIENT EVIDENCE decision | **Off** |
-| [`/safe-database-migration`](skills/safe-database-migration/README.md) | Review an existing PostgreSQL, Supabase, or Lovable schema or data change for data safety, compatibility, locking, RLS impact, backfill quality, recovery, and validation before execution | **On** |
-| [`/multi-tenant-isolation-review`](skills/multi-tenant-isolation-review/README.md) | Audit whether organizations, workspaces, teams, or customer accounts are isolated across data, roles, storage, privileged paths, search, exports, analytics, caches, realtime, jobs, webhooks, and tenant lifecycle | **Off** |
+| [`/rls-security-review`](skills/rls-security-review/README.md) | Review Supabase authorization, RLS, grants, tenant isolation, RPCs, views, storage, edge functions, and realistic bypass paths | **Off** |
+| [`/production-readiness`](skills/production-readiness/README.md) | Assess a concrete release and return an evidence-based launch decision | **Off** |
+| [`/safe-database-migration`](skills/safe-database-migration/README.md) | Review an existing schema or data change for safety, compatibility, locking, RLS impact, recovery, and validation | **On** |
+| [`/multi-tenant-isolation-review`](skills/multi-tenant-isolation-review/README.md) | Audit tenant isolation across data, roles, storage, privileged paths, search, exports, caches, realtime, jobs, and lifecycle operations | **Off** |
 
 See [Automatic use recommendations](guides/automatic-use.md) for trigger boundaries and rationale.
-
-Each skill folder contains a human-readable `README.md` and an authoritative `SKILL.md`. Complex skills may also include focused reference modules that must remain with the main skill.
 
 ### Workspace Knowledge
 
 | Resource | Purpose |
 | --- | --- |
-| [Universal Workspace Knowledge](workspace-knowledge/UNIVERSAL.md) | Ready-to-use engineering baseline that adapts to the actual project stack and established conventions |
-| [Workspace Knowledge Template](workspace-knowledge/TEMPLATE.md) | Configurable version with placeholders for approved tools, providers, naming conventions, checks, and workspace-specific restrictions |
-| [Workspace Knowledge guide](workspace-knowledge/README.md) | Explains scope, precedence, setup, maintenance, and the difference from future Project Knowledge |
-
-Workspace Knowledge applies across projects. Project-specific product behavior, schemas, routes, users, domain rules, and integration facts belong in Project Knowledge, which will be added separately.
+| [Universal Workspace Knowledge](workspace-knowledge/UNIVERSAL.md) | Ready-to-use engineering baseline that adapts to the real project stack and established conventions |
+| [Workspace Knowledge Template](workspace-knowledge/TEMPLATE.md) | Configurable version for approved tools, providers, naming rules, checks, and workspace-specific restrictions |
+| [Workspace Knowledge guide](workspace-knowledge/README.md) | Scope, precedence, setup, maintenance, and separation from future Project Knowledge |
 
 ### Planned skills
 
 | Skill | Purpose |
 | --- | --- |
-| `/webhook-reliability-review` | Review webhook integrations for signature validation, replay protection, idempotency, duplicate and out-of-order events, retries, timeouts, partial processing, dead-letter handling, secret-safe logging, state reconstruction, and manual reprocessing |
-| `/incident-investigator` | Investigate incidents without changing the system first by collecting symptoms, affected users, timelines, deployments, logs, network and database evidence, reproduction steps, competing hypotheses, impact, and safe containment measures before proposing a repair |
-| `/data-lifecycle-review` | Trace personal and business data from collection through storage, access, third-party transfers, export, retention, account deletion, linked records, and backups; identifies technical gaps but does not provide legal or GDPR certification |
-| `/schema-integrity-review` | Review nullability, unique constraints, foreign keys, deletion behavior, orphaned records, status values, timestamps, indexes, and data consistency |
-| `/state-consistency-review` | Review complex React state management for duplicate sources of truth, stale data, optimistic updates, race conditions, cache invalidation, loading and error states, and form-state consistency |
-| `/performance-root-cause-analysis` | Measure and isolate performance causes across bundle size, unnecessary renders and requests, slow queries, missing indexes, large media, blocking code, and Core Web Vitals, with before-and-after evidence |
+| `/webhook-reliability-review` | Review signature validation, replay protection, idempotency, duplicates, ordering, retries, partial processing, dead-letter handling, safe logging, reconstruction, and reprocessing |
+| `/incident-investigator` | Preserve evidence and investigate symptoms, timelines, deployments, logs, system state, hypotheses, impact, and safe containment before proposing repairs |
+| `/data-lifecycle-review` | Trace personal and business data from collection through storage, access, transfer, export, retention, account deletion, linked records, and backups without claiming legal certification |
+| `/schema-integrity-review` | Review nullability, uniqueness, foreign keys, deletion behavior, orphaned records, status values, timestamps, indexes, and consistency |
+| `/state-consistency-review` | Review React state for duplicate sources of truth, stale data, optimistic updates, races, cache invalidation, and loading, error, and form states |
+| `/performance-root-cause-analysis` | Measure and isolate bundle, rendering, query, index, request, media, blocking-code, and Core Web Vitals problems with before-and-after evidence |
 
 ### Guides
 
@@ -107,88 +100,51 @@ Workspace Knowledge applies across projects. Project-specific product behavior, 
 - [Pre-build checklist](checklists/pre-build.md)
 - [Pre-launch checklist](checklists/pre-launch.md)
 
-### Templates
-
-- [Skill template](templates/skills/SKILL.template.md)
-- [Skill README template](templates/skills/README.template.md)
-- [Workspace Knowledge template](workspace-knowledge/TEMPLATE.md)
-
 ---
 
 ## Repository structure
 
 ```text
 Lovable-Cookbook/
-├── skills/
-│   ├── feature-planner/
-│   │   ├── README.md           # Human-readable documentation
-│   │   └── SKILL.md            # Authoritative execution instructions
-│   ├── rls-security-review/
-│   │   ├── README.md
-│   │   ├── SKILL.md
-│   │   └── references/         # Supporting authorization review modules
-│   ├── production-readiness/
-│   │   ├── README.md
-│   │   ├── SKILL.md
-│   │   └── references/         # Supporting launch-readiness modules
-│   ├── safe-database-migration/
-│   │   ├── README.md
-│   │   ├── SKILL.md
-│   │   └── references/         # Supporting migration-safety modules
-│   └── multi-tenant-isolation-review/
-│       ├── README.md
-│       ├── SKILL.md
-│       └── references/         # Supporting tenant-isolation modules
+├── skills/                     # Published Lovable skills
+│   └── <skill-name>/
+│       ├── README.md           # Human-readable documentation
+│       ├── SKILL.md            # Authoritative skill instructions
+│       └── references/         # Optional supporting modules
 ├── workspace-knowledge/
 │   ├── README.md               # Scope, setup, precedence, and maintenance
 │   ├── UNIVERSAL.md            # Ready-to-use cross-project baseline
 │   └── TEMPLATE.md             # Configurable workspace baseline
-├── templates/                  # Templates for cookbook artifacts
-├── guides/                     # Practical workflows and explanations
-├── examples/                   # End-to-end worked examples
-├── checklists/                 # Review and release quality gates
-├── .github/                    # Community and repository configuration
+├── templates/
+│   └── skills/
+│       ├── TEMPLATE.md         # Skill instruction template
+│       └── README.template.md  # Human-readable skill documentation template
+├── guides/
+├── examples/
+├── checklists/
+├── .github/
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
 └── LICENSE
 ```
 
-Every published skill should include both files:
-
-- `README.md` explains the skill to people, including use cases, files, setup, expected output, limitations, and recommended Automatic use behavior.
-- `SKILL.md` remains the authoritative instruction set used to execute the skill.
-
-Workspace Knowledge has a different structure: the universal file is ready to use, while the template exposes deliberate configuration points. Both must remain cross-project, durable, and free of secrets or temporary task instructions.
-
-A skill may also include narrowly scoped reference files. Supporting files should reduce duplication and keep the main skill readable; they should not hide essential trigger rules or hard constraints.
-
 ---
 
 ## Quality standard
 
-A contribution should answer all of these questions:
+A useful contribution should make clear:
 
-1. **When should it be used?**
-2. **When should it not be used?**
-3. **Which inputs and assumptions are required?**
-4. **Which process should be followed?**
-5. **What should the output contain?**
-6. **How can the result be validated?**
-7. **What are its limits and risks?**
-8. **Should Automatic use be enabled, and why?**
-9. **Is the content workspace-wide or project-specific?**
+1. when it should and should not be used;
+2. which context and assumptions are required;
+3. what process or decision logic applies;
+4. what the result must contain;
+5. how the result can be validated;
+6. which limits, risks, and failure cases remain;
+7. whether Automatic use is appropriate;
+8. whether the content is workspace-wide or project-specific.
 
-The following do not meet the bar:
-
-- vague instructions such as “make this better”;
-- unsupported claims or guaranteed outcomes;
-- project-specific prompt dumps with hidden context;
-- workflows that ignore permissions, data ownership, or failure states;
-- content copied from proprietary sources without permission;
-- advice that encourages shipping generated work without review;
-- broad Automatic use triggers that can unexpectedly replace implementation with an audit or planning workflow;
-- temporary task instructions, secrets, or project-specific facts placed in Workspace Knowledge.
+The repository does not accept vague prompt dumps, unsupported guarantees, hidden project context, copied proprietary material, unsafe workflows, or claims of verification without evidence.
 
 ---
 
@@ -196,21 +152,15 @@ The following do not meet the bar:
 
 Contributions are welcome when they solve a repeatable problem, state their boundaries, and can be reviewed objectively.
 
-Before contributing, read:
-
-- [Contributing guide](CONTRIBUTING.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Security policy](SECURITY.md)
-
-A large number of shallow prompts does not make the repository better. One well-scoped, tested, and clearly documented workflow is more valuable.
+Read the [Contributing guide](CONTRIBUTING.md), [Code of Conduct](CODE_OF_CONDUCT.md), and [Security policy](SECURITY.md) before contributing.
 
 ## Security
 
-Do not report vulnerabilities or exposed secrets in public issues. Follow the private reporting instructions in [`SECURITY.md`](SECURITY.md).
+Do not report vulnerabilities, exposed credentials, or private data in public issues. Follow [`SECURITY.md`](SECURITY.md).
 
 ## License
 
-Lovable Cookbook is released under the [MIT License](LICENSE). You may use, modify, and distribute the material under its terms. Attribution and the full license notice must be preserved where required.
+Lovable Cookbook is released under the [MIT License](LICENSE).
 
 ---
 
