@@ -8,30 +8,30 @@ A strong contribution solves a recurring problem and can be adapted across multi
 
 Good candidates include:
 
-- a skill for a repeatable product, UX, engineering, or review workflow;
-- a focused prompt recipe with explicit inputs and constraints;
-- a practical guide for a common Lovable integration or decision;
+- a skill for a repeatable product, engineering, security, or review workflow;
+- durable Workspace Knowledge that applies across projects;
+- a practical guide for a common Lovable workflow or decision;
 - a checklist that catches meaningful mistakes before build or launch;
 - a worked example that teaches a reusable method;
-- a correction that removes unsafe, misleading, or outdated advice.
+- a correction that removes unsafe, misleading, outdated, or inconsistent advice.
 
 ## What does not belong here
 
 Avoid contributions that:
 
-- are only useful for one private project;
-- restate a request without adding a process;
+- are useful only for one private project;
 - depend on hidden context;
 - promise guaranteed outcomes;
 - encourage implementation before requirements are understood;
 - ignore authorization, privacy, destructive actions, or failure states;
 - copy proprietary documentation or paid material;
 - include credentials, private URLs, personal data, or customer information;
-- duplicate an existing artifact without a clear improvement.
+- duplicate an existing artifact without a clear improvement;
+- place project-specific or temporary instructions in Workspace Knowledge.
 
 ## Before you start
 
-For non-trivial additions, open an issue first. Explain:
+For non-trivial additions, open an issue first and explain:
 
 1. the recurring problem;
 2. who experiences it;
@@ -45,16 +45,17 @@ Small corrections, broken links, and obvious documentation fixes can go directly
 
 1. Fork the repository.
 2. Create a focused branch from `main`.
-3. Copy the closest template from `templates/`.
+3. Copy the closest available template.
 4. Add one coherent contribution.
-5. Check links, formatting, examples, and claims.
-6. Update the README catalog when adding a top-level artifact.
+5. Check links, formatting, examples, claims, and naming.
+6. Update the root catalog only when adding or removing a top-level resource.
 7. Open a pull request with a clear explanation of the problem and solution.
 
 Example branch names:
 
 ```text
-skill/ux-reviewer
+skill/webhook-reliability-review
+knowledge/workspace-security-rules
 guide/supabase-auth
 fix/broken-link
 docs/clarify-security-policy
@@ -64,70 +65,60 @@ docs/clarify-security-policy
 
 ### Skills
 
-Every published skill must include two top-level files:
+Every published skill uses this structure:
 
 ```text
 skills/<skill-name>/
 ├── README.md
-└── SKILL.md
-```
-
-Their responsibilities are deliberately separate:
-
-- `README.md` is human-readable documentation. It explains purpose, use and non-use cases, setup, included files, expected output, limitations, and related resources.
-- `SKILL.md` is the authoritative execution file. It contains frontmatter, trigger rules, role, process, output contract, hard constraints, and links to supporting files.
-
-Do not duplicate the full skill logic in the README. When the two files disagree, `SKILL.md` controls execution, but the inconsistency must be fixed before merge.
-
-Use both templates when creating a skill:
-
-```text
-templates/skills/README.template.md
-templates/skills/SKILL.template.md
-```
-
-A skill may also include supporting files when the workflow is too broad for one readable file:
-
-```text
-skills/rls-security-review/
-├── README.md
 ├── SKILL.md
-└── references/
-    ├── review-workflow.md
-    ├── testing.md
-    └── severity-and-reporting.md
+└── references/        # optional
 ```
 
-The main `SKILL.md` must remain the authoritative entry point. It should contain the frontmatter, trigger and non-trigger rules, role, core behavior, output contract, hard constraints, and links to every supporting file.
+Responsibilities:
+
+- `README.md` is human-readable documentation covering purpose, usage, files, setup, expected output, limitations, related resources, and recommended Automatic use behavior.
+- `SKILL.md` is the authoritative execution file containing frontmatter, trigger rules, role, process, output contract, and hard constraints.
+- `references/` contains narrowly scoped supporting modules when the workflow is too broad for one readable skill file.
+
+Use the templates in:
+
+```text
+templates/skills/TEMPLATE.md
+templates/skills/README.template.md
+```
+
+The main `SKILL.md` must remain the authoritative entry point. It must link every required supporting file and must not hide trigger rules or safety constraints in references.
 
 Reference files should:
 
 - cover one clearly named concern;
-- be loaded only when relevant to the skill workflow;
 - avoid duplicating the main file;
 - use relative links;
-- remain understandable outside a single private project;
-- never hide essential safety boundaries or trigger rules.
+- remain understandable outside a private project;
+- contain no hidden essential trigger or safety rules.
 
-Skills should normally include:
+Use lowercase kebab-case for skill folders and reference files.
 
-- skill name and frontmatter;
-- use cases;
-- explicit non-use cases;
-- role and responsibility;
-- required inputs or review-readiness rules;
-- process or decision logic;
-- required output structure;
-- limits and risks;
-- validation criteria.
+### Workspace Knowledge
 
-Use lowercase kebab-case:
+Workspace Knowledge must remain durable and apply across multiple projects in a workspace.
+
+Use this structure:
 
 ```text
-skills/feature-planner/README.md
-skills/feature-planner/SKILL.md
-skills/rls-security-review/references/review-workflow.md
+workspace-knowledge/
+├── README.md
+├── UNIVERSAL.md
+└── TEMPLATE.md
 ```
+
+Rules:
+
+- `UNIVERSAL.md` must remain broadly useful without organization-specific assumptions.
+- `TEMPLATE.md` may expose deliberate placeholders for tools, providers, checks, naming rules, and restrictions.
+- Project-specific schemas, routes, product rules, users, tenants, integrations, or temporary tasks do not belong here.
+- Secrets, credentials, private URLs, and customer information are prohibited.
+- Do not duplicate content that already has an authoritative location.
 
 ### Guides
 
@@ -149,7 +140,7 @@ checklists/auth-review.md
 
 ### Examples
 
-Examples must use fictional or sanitized data. They should show the reasoning and validation process, not only the final prompt.
+Examples must use fictional or sanitized data. They should show the process and validation, not only the final prompt.
 
 ## Writing standard
 
@@ -162,22 +153,23 @@ Use clear English and concise Markdown.
 - Avoid hype, filler, and unsupported superlatives.
 - Do not claim that generated output is automatically secure or production-ready.
 - Use relative links for files inside the repository.
+- Keep naming and capitalization consistent with existing repository conventions.
 
 ## Validation checklist
 
 Before opening a pull request, confirm:
 
 - [ ] The contribution solves a repeatable problem.
-- [ ] Every skill has both `README.md` and `SKILL.md`.
-- [ ] The README explains usage without duplicating the full execution logic.
-- [ ] Use and non-use cases are explicit.
+- [ ] File names and paths follow repository conventions.
+- [ ] Links and relative references work.
+- [ ] Use and non-use cases are explicit where applicable.
 - [ ] Required context and assumptions are listed.
 - [ ] The output or outcome is reviewable.
 - [ ] Risks, limitations, and edge cases are covered.
-- [ ] Supporting references are linked from the main skill and contain no hidden essential rules.
+- [ ] Supporting references contain no hidden essential rules.
+- [ ] Workspace Knowledge contains no project-specific or temporary instructions.
 - [ ] Examples contain no secrets or private data.
-- [ ] Links and file paths work.
-- [ ] The README catalog is updated when necessary.
+- [ ] The root catalog is updated only when necessary.
 - [ ] The contribution does not duplicate existing material without improvement.
 
 ## Pull request description
@@ -192,9 +184,9 @@ A useful pull request explains:
 
 ## Review process
 
-Reviews focus on usefulness, clarity, correctness, boundaries, safety, and maintainability.
+Reviews focus on usefulness, clarity, correctness, boundaries, safety, consistency, and maintainability.
 
-A contribution may be rejected even when it is well written if it is too narrow, duplicates existing content, hides important assumptions, or adds more maintenance cost than value.
+A contribution may be rejected even when it is well written if it is too narrow, duplicates existing content, hides assumptions, breaks repository structure, or adds more maintenance cost than value.
 
 Maintainers may request substantial changes. That is normal review, not a personal judgment.
 
