@@ -111,18 +111,12 @@ Lovable-Cookbook/
 │       ├── README.md           # Human-readable documentation
 │       ├── SKILL.md            # Authoritative skill instructions
 │       └── references/         # Optional supporting modules
-├── workspace-knowledge/
-│   ├── README.md               # Scope, setup, precedence, and maintenance
-│   ├── UNIVERSAL.md            # Ready-to-use cross-project baseline
-│   └── TEMPLATE.md             # Configurable workspace baseline
-├── templates/
-│   └── skills/
-│       ├── TEMPLATE.md         # Skill instruction template
-│       └── README.template.md  # Human-readable skill documentation template
-├── guides/
-├── examples/
-├── checklists/
-├── .github/
+├── workspace-knowledge/        # Cross-project workspace rules
+├── templates/                  # Reusable contribution templates
+├── guides/                     # Practical workflows and explanations
+├── examples/                   # Worked examples
+├── checklists/                 # Build and release quality gates
+├── .github/                    # Repository configuration
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
