@@ -61,10 +61,10 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 
 | Skill | Purpose |
 | --- | --- |
-| [`/feature-planner`](skills/feature-planner/SKILL.md) | Critically plan a feature or larger product change before implementation |
-| [`/rls-security-review`](skills/rls-security-review/SKILL.md) | Perform a read-only, evidence-based authorization review of Lovable and Supabase projects, including RLS, grants, tenant isolation, RPCs, views, storage, edge functions, and realistic bypass paths |
+| [`/feature-planner`](skills/feature-planner/README.md) | Critically plan a feature or larger product change before implementation |
+| [`/rls-security-review`](skills/rls-security-review/README.md) | Perform a read-only, evidence-based authorization review of Lovable and Supabase projects, including RLS, grants, tenant isolation, RPCs, views, storage, edge functions, and realistic bypass paths |
 
-The RLS review is a multi-file skill. Its main instructions are supported by focused reference modules under [`skills/rls-security-review/references/`](skills/rls-security-review/references/).
+Each skill folder contains a human-readable `README.md` and an authoritative `SKILL.md`. Complex skills may also include focused reference modules that must remain with the main skill.
 
 ### Planned skills
 
@@ -87,6 +87,7 @@ The RLS review is a multi-file skill. Its main instructions are supported by foc
 ### Templates
 
 - [Skill template](templates/skills/SKILL.template.md)
+- [Skill README template](templates/skills/README.template.md)
 
 ---
 
@@ -96,22 +97,29 @@ The RLS review is a multi-file skill. Its main instructions are supported by foc
 Lovable-Cookbook/
 ├── skills/
 │   ├── feature-planner/
-│   │   └── SKILL.md
+│   │   ├── README.md           # Human-readable documentation
+│   │   └── SKILL.md            # Authoritative execution instructions
 │   └── rls-security-review/
+│       ├── README.md
 │       ├── SKILL.md
-│       └── references/        # Supporting checks, workflows, and reporting rules
-├── templates/                 # Templates for cookbook artifacts
-├── guides/                    # Practical workflows and explanations
-├── examples/                  # End-to-end worked examples
-├── checklists/                # Review and release quality gates
-├── .github/                   # Community and repository configuration
+│       └── references/         # Supporting checks, workflows, and reporting rules
+├── templates/                  # Templates for cookbook artifacts
+├── guides/                     # Practical workflows and explanations
+├── examples/                   # End-to-end worked examples
+├── checklists/                 # Review and release quality gates
+├── .github/                    # Community and repository configuration
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
 └── LICENSE
 ```
 
-A skill may be a single `SKILL.md` or a main skill file supported by narrowly scoped reference files. Supporting files should reduce duplication and keep the main skill readable; they should not hide essential trigger rules or hard constraints.
+Every published skill should include both files:
+
+- `README.md` explains the skill to people, including use cases, files, setup, expected output, and limitations.
+- `SKILL.md` remains the authoritative instruction set used to execute the skill.
+
+A skill may also include narrowly scoped reference files. Supporting files should reduce duplication and keep the main skill readable; they should not hide essential trigger rules or hard constraints.
 
 ---
 
