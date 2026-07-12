@@ -93,10 +93,11 @@ See [Automatic use recommendations](guides/automatic-use.md) for trigger boundar
 
 ### Prompt recipes
 
-| Resource | Purpose |
-| --- | --- |
-| [Prompt Recipe Template](prompts/TEMPLATE.md) | Standard structure for reusable Lovable prompts with triggers, context, variables, boundaries, output, and verification |
-| [Prompt Recipe catalog](prompts/README.md) | Category selection, file conventions, adaptation rules, and quality requirements |
+| Resource | Category | Purpose |
+| --- | --- | --- |
+| [Analyze Existing Project](prompts/planning/analyze-existing-project.md) | Planning | Build a read-only, evidence-based understanding of an existing project's architecture, flows, conventions, risks, and unknowns before planning or changing it |
+| [Prompt Recipe Template](prompts/TEMPLATE.md) | Template | Standard structure for reusable Lovable prompts with triggers, context, variables, boundaries, output, and verification |
+| [Prompt Recipe catalog](prompts/README.md) | Guide | Category selection, compatible skills and prompts, recommended sequences, file conventions, and quality requirements |
 
 Categories: [planning](prompts/planning/) · [implementation](prompts/implementation/) · [debugging](prompts/debugging/) · [database](prompts/database/) · [security](prompts/security/) · [testing](prompts/testing/) · [design](prompts/design/) · [integrations](prompts/integrations/) · [performance](prompts/performance/) · [launch](prompts/launch/)
 
@@ -136,6 +137,8 @@ Lovable-Cookbook/
 │   ├── README.md
 │   ├── TEMPLATE.md
 │   ├── planning/
+│   │   ├── README.md
+│   │   └── analyze-existing-project.md
 │   ├── implementation/
 │   ├── debugging/
 │   ├── database/
