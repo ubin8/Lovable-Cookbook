@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>Practical skills, prompts, workflows, templates, and checklists for building better products with Lovable.</strong>
+  <strong>Practical skills, knowledge, prompts, workflows, templates, and checklists for building better products with Lovable.</strong>
   <br />
   Plan clearly · Prompt deliberately · Review critically · Ship responsibly
 </p>
@@ -24,7 +24,7 @@
 
 **Lovable Cookbook** is a curated collection of reusable resources for people building applications with [Lovable](https://lovable.dev/).
 
-Lovable can accelerate implementation, but it does not replace product judgment, precise requirements, sound architecture, secure data access, testing, or maintenance. This repository turns those recurring tasks into explicit workflows that can be reused, reviewed, and improved.
+Lovable can accelerate implementation, but it does not replace product judgment, precise requirements, sound architecture, secure data access, testing, or maintenance. This repository turns those recurring tasks into explicit workflows and durable knowledge that can be reused, reviewed, and improved.
 
 This is not a dump of “magic prompts.” Every useful artifact should make its purpose, required context, limits, expected output, and validation method clear.
 
@@ -33,6 +33,8 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 | Area | What it contains |
 | --- | --- |
 | **Skills** | Structured instructions for recurring product, UX, engineering, and review roles |
+| **Workspace Knowledge** | Durable engineering rules shared across every project in a Lovable workspace |
+| **Project Knowledge** | Project-specific product, domain, architecture, and integration context — coming later |
 | **Prompt recipes** | Focused prompts with context, constraints, expected output, and quality checks |
 | **Guides** | Practical explanations for common Lovable workflows and decisions |
 | **Templates** | Reusable structures for specifications, prompts, decisions, and handoffs |
@@ -44,15 +46,16 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 ## Start here
 
 1. Read [How to use this cookbook](guides/how-to-use-this-cookbook.md).
-2. Review the [Automatic use recommendations](guides/automatic-use.md).
-3. Pick the artifact that matches the actual problem.
-4. Replace placeholders with facts from your project.
-5. Remove requirements that do not apply.
-6. Review assumptions before implementation.
-7. Validate the result with the relevant checklist.
+2. Choose a [Workspace Knowledge baseline](workspace-knowledge/README.md).
+3. Review the [Automatic use recommendations](guides/automatic-use.md).
+4. Pick the artifact that matches the actual problem.
+5. Replace placeholders with facts from your workspace or project.
+6. Remove requirements that do not apply.
+7. Review assumptions before implementation.
+8. Validate the result with the relevant checklist.
 
 > [!WARNING]
-> Copying a recipe without adapting it to your project is bad practice. A reusable workflow provides structure, not project truth.
+> Copying an artifact without adapting it to your workspace or project is bad practice. A reusable resource provides structure, not project truth.
 
 ---
 
@@ -72,6 +75,16 @@ See [Automatic use recommendations](guides/automatic-use.md) for trigger boundar
 
 Each skill folder contains a human-readable `README.md` and an authoritative `SKILL.md`. Complex skills may also include focused reference modules that must remain with the main skill.
 
+### Workspace Knowledge
+
+| Resource | Purpose |
+| --- | --- |
+| [Universal Workspace Knowledge](workspace-knowledge/UNIVERSAL.md) | Ready-to-use engineering baseline that adapts to the actual project stack and established conventions |
+| [Workspace Knowledge Template](workspace-knowledge/TEMPLATE.md) | Configurable version with placeholders for approved tools, providers, naming conventions, checks, and workspace-specific restrictions |
+| [Workspace Knowledge guide](workspace-knowledge/README.md) | Explains scope, precedence, setup, maintenance, and the difference from future Project Knowledge |
+
+Workspace Knowledge applies across projects. Project-specific product behavior, schemas, routes, users, domain rules, and integration facts belong in Project Knowledge, which will be added separately.
+
 ### Planned skills
 
 | Skill | Purpose |
@@ -87,6 +100,7 @@ Each skill folder contains a human-readable `README.md` and an authoritative `SK
 
 - [How to use this cookbook](guides/how-to-use-this-cookbook.md)
 - [Automatic use recommendations](guides/automatic-use.md)
+- [Workspace Knowledge guide](workspace-knowledge/README.md)
 
 ### Checklists
 
@@ -97,6 +111,7 @@ Each skill folder contains a human-readable `README.md` and an authoritative `SK
 
 - [Skill template](templates/skills/SKILL.template.md)
 - [Skill README template](templates/skills/README.template.md)
+- [Workspace Knowledge template](workspace-knowledge/TEMPLATE.md)
 
 ---
 
@@ -124,6 +139,10 @@ Lovable-Cookbook/
 │       ├── README.md
 │       ├── SKILL.md
 │       └── references/         # Supporting tenant-isolation modules
+├── workspace-knowledge/
+│   ├── README.md               # Scope, setup, precedence, and maintenance
+│   ├── UNIVERSAL.md            # Ready-to-use cross-project baseline
+│   └── TEMPLATE.md             # Configurable workspace baseline
 ├── templates/                  # Templates for cookbook artifacts
 ├── guides/                     # Practical workflows and explanations
 ├── examples/                   # End-to-end worked examples
@@ -139,6 +158,8 @@ Every published skill should include both files:
 
 - `README.md` explains the skill to people, including use cases, files, setup, expected output, limitations, and recommended Automatic use behavior.
 - `SKILL.md` remains the authoritative instruction set used to execute the skill.
+
+Workspace Knowledge has a different structure: the universal file is ready to use, while the template exposes deliberate configuration points. Both must remain cross-project, durable, and free of secrets or temporary task instructions.
 
 A skill may also include narrowly scoped reference files. Supporting files should reduce duplication and keep the main skill readable; they should not hide essential trigger rules or hard constraints.
 
@@ -156,6 +177,7 @@ A contribution should answer all of these questions:
 6. **How can the result be validated?**
 7. **What are its limits and risks?**
 8. **Should Automatic use be enabled, and why?**
+9. **Is the content workspace-wide or project-specific?**
 
 The following do not meet the bar:
 
@@ -165,7 +187,8 @@ The following do not meet the bar:
 - workflows that ignore permissions, data ownership, or failure states;
 - content copied from proprietary sources without permission;
 - advice that encourages shipping generated work without review;
-- broad Automatic use triggers that can unexpectedly replace implementation with an audit or planning workflow.
+- broad Automatic use triggers that can unexpectedly replace implementation with an audit or planning workflow;
+- temporary task instructions, secrets, or project-specific facts placed in Workspace Knowledge.
 
 ---
 
