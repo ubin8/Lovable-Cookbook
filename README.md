@@ -34,7 +34,7 @@ This is not a dump of “magic prompts.” Every artifact should have a clear pu
 | --- | --- |
 | **Skills** | Structured instructions for recurring product, engineering, security, and review workflows |
 | **Workspace Knowledge** | Durable engineering rules shared across all projects in a Lovable workspace |
-| **Project Knowledge** | Project-specific product, domain, architecture, and integration context — coming later |
+| **Project Knowledge** | Durable product, domain, architecture, permissions, data, integration, design, and operational context for one project |
 | **Guides** | Practical explanations for common Lovable workflows and decisions |
 | **Templates** | Reusable starting points for structured artifacts |
 | **Checklists** | Compact quality gates before implementation and launch |
@@ -46,10 +46,11 @@ This is not a dump of “magic prompts.” Every artifact should have a clear pu
 
 1. Read [How to use this cookbook](guides/how-to-use-this-cookbook.md).
 2. Choose a [Workspace Knowledge baseline](workspace-knowledge/README.md).
-3. Review the [Automatic use recommendations](guides/automatic-use.md).
-4. Select the resource that matches the actual problem.
-5. Adapt it to the verified workspace or project context.
-6. Validate the result before relying on it.
+3. Configure [Project Knowledge](project-knowledge/README.md) for the concrete application.
+4. Review the [Automatic use recommendations](guides/automatic-use.md).
+5. Select the resource that matches the actual problem.
+6. Adapt it to the verified workspace or project context.
+7. Validate the result before relying on it.
 
 > [!WARNING]
 > Copying an artifact without adapting it to the actual workspace or project creates false confidence. A reusable resource provides structure, not project truth.
@@ -76,7 +77,14 @@ See [Automatic use recommendations](guides/automatic-use.md) for trigger boundar
 | --- | --- |
 | [Universal Workspace Knowledge](workspace-knowledge/UNIVERSAL.md) | Ready-to-use engineering baseline that adapts to the real project stack and established conventions |
 | [Workspace Knowledge Template](workspace-knowledge/TEMPLATE.md) | Configurable version for approved tools, providers, naming rules, checks, and workspace-specific restrictions |
-| [Workspace Knowledge guide](workspace-knowledge/README.md) | Scope, precedence, setup, maintenance, and separation from future Project Knowledge |
+| [Workspace Knowledge guide](workspace-knowledge/README.md) | Scope, precedence, setup, maintenance, and separation from Project Knowledge |
+
+### Project Knowledge
+
+| Resource | Purpose |
+| --- | --- |
+| [Project Knowledge Template](project-knowledge/TEMPLATE.md) | Configurable durable context for one concrete Lovable application |
+| [Project Knowledge guide](project-knowledge/README.md) | Scope, setup, precedence, maintenance, and separation from Workspace Knowledge |
 
 ### Planned skills
 
@@ -94,6 +102,7 @@ See [Automatic use recommendations](guides/automatic-use.md) for trigger boundar
 - [How to use this cookbook](guides/how-to-use-this-cookbook.md)
 - [Automatic use recommendations](guides/automatic-use.md)
 - [Workspace Knowledge guide](workspace-knowledge/README.md)
+- [Project Knowledge guide](project-knowledge/README.md)
 
 ### Checklists
 
@@ -112,6 +121,12 @@ Lovable-Cookbook/
 │       ├── SKILL.md            # Authoritative skill instructions
 │       └── references/         # Optional supporting modules
 ├── workspace-knowledge/        # Cross-project workspace rules
+│   ├── README.md
+│   ├── UNIVERSAL.md
+│   └── TEMPLATE.md
+├── project-knowledge/          # Durable rules and context for one project
+│   ├── README.md
+│   └── TEMPLATE.md
 ├── templates/                  # Reusable contribution templates
 ├── guides/                     # Practical workflows and explanations
 ├── examples/                   # Worked examples
