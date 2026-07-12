@@ -9,7 +9,7 @@ Use [`TEMPLATE.md`](TEMPLATE.md) when creating a new recipe.
 | Category | Primary outcome |
 | --- | --- |
 | [`planning/`](planning/) | Analysis, acceptance criteria, impact assessment, feature plans, and execution sequencing |
-| [`implementation/`](implementation/) | Focused changes, flow extensions, behavior-preserving refactors, and explicit UI states |
+| [`implementation/`](implementation/) | Focused changes, flow extensions, behavior-preserving refactors, explicit UI states, and responsive adaptations |
 | [`debugging/`](debugging/) | Reproduction, evidence gathering, root-cause isolation, and targeted fixes |
 | [`database/`](database/) | Schemas, migrations, queries, constraints, and data integrity |
 | [`security/`](security/) | Authorization, data exposure, secrets, tenant boundaries, and trusted operations |
@@ -35,6 +35,7 @@ Use [`TEMPLATE.md`](TEMPLATE.md) when creating a new recipe.
 - [`extend-existing-flow`](implementation/extend-existing-flow.md) — add one branch, step, state, role, outcome, or side effect while preserving the original path.
 - [`refactor-without-behavior-change`](implementation/refactor-without-behavior-change.md) — improve internal structure while keeping observable behavior and public contracts stable.
 - [`add-error-and-empty-states`](implementation/add-error-and-empty-states.md) — add explicit, accessible, recoverable loading, empty, permission, partial-failure, and error states.
+- [`add-responsive-behavior`](implementation/add-responsive-behavior.md) — adapt an existing interface across supported viewport ranges without redesigning the product or weakening desktop behavior.
 
 ## Recommended sequences
 
@@ -55,6 +56,10 @@ Use only the steps that add distinct value.
 ### Improve missing UI states
 
 Confirm a stable data contract → `add-error-and-empty-states` → targeted state and accessibility verification
+
+### Add responsive behavior
+
+Define supported viewports and content priority → `assess-change-impact` when shared layout contracts are involved → `add-responsive-behavior` → viewport, interaction, state, and desktop-regression verification
 
 ### Existing project or unclear feature area
 
