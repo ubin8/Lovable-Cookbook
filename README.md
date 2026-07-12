@@ -63,6 +63,7 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 | --- | --- |
 | [`/feature-planner`](skills/feature-planner/README.md) | Critically plan a feature or larger product change before implementation |
 | [`/rls-security-review`](skills/rls-security-review/README.md) | Perform a read-only, evidence-based authorization review of Lovable and Supabase projects, including RLS, grants, tenant isolation, RPCs, views, storage, edge functions, and realistic bypass paths |
+| [`/production-readiness`](skills/production-readiness/README.md) | Assess a specific Lovable release and return an evidence-based GO, CONDITIONAL GO, NO-GO, or INSUFFICIENT EVIDENCE decision |
 
 Each skill folder contains a human-readable `README.md` and an authoritative `SKILL.md`. Complex skills may also include focused reference modules that must remain with the main skill.
 
@@ -99,10 +100,14 @@ Lovable-Cookbook/
 │   ├── feature-planner/
 │   │   ├── README.md           # Human-readable documentation
 │   │   └── SKILL.md            # Authoritative execution instructions
-│   └── rls-security-review/
+│   ├── rls-security-review/
+│   │   ├── README.md
+│   │   ├── SKILL.md
+│   │   └── references/         # Supporting authorization review modules
+│   └── production-readiness/
 │       ├── README.md
 │       ├── SKILL.md
-│       └── references/         # Supporting checks, workflows, and reporting rules
+│       └── references/         # Supporting launch-readiness modules
 ├── templates/                  # Templates for cookbook artifacts
 ├── guides/                     # Practical workflows and explanations
 ├── examples/                   # End-to-end worked examples
