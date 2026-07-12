@@ -88,25 +88,6 @@ This is not a dump of “magic prompts.” Every useful artifact should make its
 
 ---
 
-## Featured skill: Feature Planner
-
-[`/feature-planner`](skills/feature-planner/SKILL.md) acts as a critical product manager, UX planner, and technical analyst before implementation begins.
-
-It tests a proposal against:
-
-- the concrete user problem;
-- target users and current alternatives;
-- MVP scope and explicit non-goals;
-- user flows, states, permissions, and recovery paths;
-- functional requirements and acceptance criteria;
-- data ownership, integrations, and migrations;
-- product, technical, privacy, security, and maintenance risks;
-- simpler alternatives and opportunity costs.
-
-Use it for meaningful features and larger changes. Do not use it for tiny copy edits, isolated styling changes, direct implementation requests, or straightforward bug fixes.
-
----
-
 ## Repository structure
 
 ```text
@@ -120,7 +101,6 @@ Lovable-Cookbook/
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
-├── ROADMAP.md
 └── LICENSE
 ```
 
@@ -146,26 +126,6 @@ The following do not meet the bar:
 - workflows that ignore permissions, data ownership, or failure states;
 - content copied from proprietary sources without permission;
 - advice that encourages shipping generated work without review.
-
----
-
-## Roadmap
-
-Planned areas include:
-
-- product discovery and feature planning;
-- UI and UX review;
-- Supabase and database design;
-- authentication and authorization;
-- payments and subscriptions;
-- SEO, analytics, and accessibility;
-- testing and debugging;
-- security and privacy review;
-- deployment and release management;
-- refactoring and technical debt;
-- prompt patterns and anti-patterns.
-
-See [`ROADMAP.md`](ROADMAP.md) for the proposed sequence.
 
 ---
 
