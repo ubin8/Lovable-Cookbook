@@ -9,6 +9,7 @@ Automatic use should not be treated as a quality badge. It is a routing decision
 | Skill | Automatic use | Reason |
 | --- | --- | --- |
 | [`/feature-planner`](../skills/feature-planner/README.md) | **On, with a narrow trigger** | Useful for explicit planning, specification, or feature-analysis requests. It must not replace direct implementation when the user asks to build something. |
+| [`/rls-policy-designer`](../skills/rls-policy-designer/README.md) | **Off** | Designs or replaces authorization models and can generate migration-ready SQL. It must not activate for generic Supabase, database, implementation, or review requests. |
 | [`/rls-security-review`](../skills/rls-security-review/README.md) | **Off** | Starts a deep, read-only authorization audit. Automatic activation could turn normal Supabase or policy work into an unnecessarily broad review. |
 | [`/production-readiness`](../skills/production-readiness/README.md) | **Off** | Acts as a formal release gate and can return NO-GO or INSUFFICIENT EVIDENCE. It should be started deliberately for a concrete release. |
 | [`/safe-database-migration`](../skills/safe-database-migration/README.md) | **On** | Provides a read-only safety preflight before existing schema or production data is changed. This is a narrow, high-risk trigger where automatic protection is valuable. |
@@ -62,6 +63,24 @@ Do not match:
 When the description is broad enough to match generic feature requests, disable Automatic use.
 
 ## Disable Automatic use
+
+### `/rls-policy-designer`
+
+This skill owns authorization design and remediation rather than generic RLS assistance. It can reconstruct an access model, ask blocking questions about tenant and role semantics, replace existing policies, generate migration-ready SQL, and return `BLOCKED` when authorization intent is insufficient.
+
+Automatic activation could incorrectly intercept requests such as:
+
+- “Explain this policy.”
+- “Audit our RLS.”
+- “Add a table.”
+- “Implement organization switching.”
+- “Fix this Supabase query.”
+
+Start it deliberately when the user explicitly asks to design, replace, simplify, or generate RLS policies or an authorization matrix.
+
+Recommended setting:
+
+> Automatic use: Off
 
 ### `/rls-security-review`
 
