@@ -39,7 +39,7 @@ This is not a collection of “magic prompts.” Every resource should define it
 
 | Area | Start here | What it provides |
 | --- | --- | --- |
-| **Skills** | [`skills/`](skills/) | Deep reusable workflows for planning, database safety, authorization, tenant isolation, and release review |
+| **Skills** | [`skills/`](skills/) | Deep reusable workflows for planning, database safety, authorization design and review, tenant isolation, and release review |
 | **Prompt recipes** | [`prompts/README.md`](prompts/README.md) | Focused prompts organized by planning, implementation, debugging, database, security, testing, design, integrations, performance, and launch |
 | **Workspace Knowledge** | [`workspace-knowledge/README.md`](workspace-knowledge/README.md) | Durable engineering defaults shared across projects |
 | **Project Knowledge** | [`project-knowledge/README.md`](project-knowledge/README.md) | General and product-specific context templates for one application |
@@ -75,6 +75,7 @@ Use only the resources that add distinct value. The [Prompt Recipe catalog](prom
 
 - [`/feature-planner`](skills/feature-planner/README.md)
 - [`/safe-database-migration`](skills/safe-database-migration/README.md)
+- [`/rls-policy-designer`](skills/rls-policy-designer/README.md)
 - [`/rls-security-review`](skills/rls-security-review/README.md)
 - [`/multi-tenant-isolation-review`](skills/multi-tenant-isolation-review/README.md)
 - [`/production-readiness`](skills/production-readiness/README.md)
