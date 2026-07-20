@@ -34,17 +34,8 @@ Use [`/rls-security-review`](../rls-security-review/README.md) for an independen
 
 | File | Purpose |
 | --- | --- |
-| [`SKILL.md`](SKILL.md) | Authoritative workflow, trigger rules, gates, modes, output contracts, and hard constraints |
-| [`references/authorization-model.md`](references/authorization-model.md) | Actors, resources, tenants, ownership, membership, roles, lifecycle, and trusted relationships |
-| [`references/authorization-matrix.md`](references/authorization-matrix.md) | Operation-level access decisions, negative cases, and current-versus-intended matrices |
-| [`references/policy-strategy.md`](references/policy-strategy.md) | Enforcement boundaries, policy strategy, helpers, views, RPCs, and migration choices |
-| [`references/canonical-policy-patterns.md`](references/canonical-policy-patterns.md) | Reusable ownership, tenant, sharing, invitation, storage, audit, and service-only patterns |
-| [`references/policy-generation.md`](references/policy-generation.md) | Migration and SQL construction rules |
-| [`references/policy-validation.md`](references/policy-validation.md) | Validation of policies, privileges, surfaces, sessions, migrations, and tests |
-| [`references/common-mistakes.md`](references/common-mistakes.md) | Diagnostic symptoms and recurring RLS failure modes |
-| [`references/performance.md`](references/performance.md) | Query plans, indexes, recursion, and operational RLS performance |
-| [`references/supabase-notes.md`](references/supabase-notes.md) | Supabase roles, keys, auth helpers, Data API, storage, realtime, and Edge Functions |
-| [`references/postgres-notes.md`](references/postgres-notes.md) | PostgreSQL RLS semantics, grants, policy composition, views, functions, and bypass behavior |
+| [`README.md`](README.md) | Human-readable purpose, usage, boundaries, expected output, and Automatic-use recommendation |
+| [`SKILL.md`](SKILL.md) | Authoritative self-contained workflow, trigger rules, gates, modes, output contracts, validation requirements, and hard constraints |
 
 ## Core workflow
 
@@ -82,6 +73,13 @@ When authorization intent is sufficient, the skill returns:
 - a final decision of `READY FOR REVIEW`, `CONDITIONAL`, or `BLOCKED`.
 
 When intent is insufficient, it returns an authorization-readiness report without speculative SQL.
+
+## Useful combinations
+
+- Use after `analyze-existing-project`, `create-acceptance-criteria`, `assess-change-impact`, or `plan-feature` when authorization intent needs to become a concrete policy design.
+- Use `/safe-database-migration` for a separate migration-safety preflight when the resulting policy migration changes existing schema objects, grants, functions, indexes, or production data.
+- Use `/rls-security-review` after implementation when an independent read-only audit is required.
+- Use `/multi-tenant-isolation-review` when the risk extends beyond database RLS into storage, search, exports, caches, jobs, realtime, integrations, or tenant lifecycle.
 
 ## Limitations
 
